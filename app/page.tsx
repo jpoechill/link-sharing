@@ -24,7 +24,7 @@ export default function Home() {
           </Link>
           <div className='w-full text-center mt-4'>
             <span className='text-[#737373]'>
-              Don't have an account?
+              Don&apos;'t have an account?
             </span> <Link href="/createaccount">Create Account</Link>
           </div>
         </div>

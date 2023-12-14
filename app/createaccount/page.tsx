@@ -8,7 +8,7 @@ export default function Home() {
       <div className='flex flex-col rounded-[18px] p-10 px-12 w-[476px] drop-shadow-2xl items-center bg-white text-center'>
         <div className='w-full text-left mb-8'>
           <h1 className='text-[32px] font-bold mb-2'>Create account</h1>
-          <span className='text-[16px] text-[#737373]'>Let's get you started sharing your links!</span>
+          <span className='text-[16px] text-[#737373]'>Let&apos;s get you started sharing your links!</span>
         </div>
         <div className='w-full text-left'>
           <div className='mb-5'>
