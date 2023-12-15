@@ -9,7 +9,7 @@ export default function Home() {
         <div className='flex justify-between rounded-[18px] p-4 w-full items-center bg-white text-center'>
           <div>
             <Link href="/dashboard">
-              <button className='px-4 py-2 rounded border border-[#633CFF] text-[#633CFF]'>
+              <button className='px-4 py-2 rounded border border-[#633CFF] hover:bg-[#EFEBFF] font-medium text-[#633CFF]'>
                 Back to Editor
               </button>
             </Link>
