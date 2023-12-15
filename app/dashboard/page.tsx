@@ -1,7 +1,10 @@
+'use client';
+
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
+
   return (
     <main className="flex flex-col items-center p-4 h-full">
       <div className='flex justify-between rounded-[18px] p-5 w-full items-center bg-white text-center'>
@@ -18,7 +21,7 @@ export default function Home() {
         </div>
         <div>
           <Link href="/dashboard/preview">
-            <button>Preview</button>
+            <button className='p-2 px-5 text-[16px] rounded-lg mx-2'>Preview</button>
           </Link>
         </div>
       </div>
@@ -31,7 +34,8 @@ export default function Home() {
             <div className="p-5">
               Customize your links <br />
               Add/edit/remove links below and then share all your profiles with the world! <br />
-              <button className='border w-full p-2 px-5 text-[#633CFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
+
+              <button onClick={(e) => alert('Add new link')} className='border w-full p-2 px-5 text-[#633CFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
                 + Add new link
               </button>
 
@@ -62,18 +66,10 @@ export default function Home() {
               </div>
             </div>
 
-
-            {/* <div className="relative flex w-full">
-              <p>Relative parent</p>
-              <div className="absolute bottom-0 left-0 ...">
-                <p>Absolute child</p>
-              </div>
-            </div> */}
-
             <div className="absolute bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => alert('The settings have been saved.')} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>

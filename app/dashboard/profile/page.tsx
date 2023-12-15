@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -65,7 +67,7 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => alert('The settings have been saved.')} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>
