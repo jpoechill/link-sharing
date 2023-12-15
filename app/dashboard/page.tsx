@@ -31,7 +31,7 @@ export default function Home() {
         </div>
         <div>
           <Link href="/dashboard/preview">
-            <button className='px-4 py-2 text-[16px] mx-2 rounded border border-[#633CFF] hover-bg-[#EFEBFF] text-[#633CFF]'>
+            <button className='px-4 py-2 text-[16px] mx-2 rounded border border-[#633CFF] hover:bg-[#EFEBFF] text-[#633CFF]'>
               Preview
             </button>
           </Link>
@@ -51,7 +51,7 @@ export default function Home() {
                 <div className='text-[16px] text-[#737373] mb-7'>
                   Add/edit/remove links below and then share all your profiles with the world! <br />
                 </div>
-                <button onClick={(e) => alert('Add new link')} className='border w-full p-2 px-5 text-[#633CFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
+                <button onClick={(e) => alert('Add new link')} className='border w-full p-2 px-5 text-[#633CFF] hover:bg-[#EFEBFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
                   + Add new link
                 </button>
 
