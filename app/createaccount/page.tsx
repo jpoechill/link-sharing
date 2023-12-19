@@ -13,15 +13,15 @@ export default function Home() {
         <div className='w-full text-left'>
           <div className='mb-5'>
             <span className='text-xs'>Email Address</span> <br />
-            <input type="text" className='border w-full p-3 rounded-lg mt-1' placeholder='e.g. alex@gmail.com' />
+            <input type="text" className='border w-full p-3 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)]' placeholder='e.g. alex@gmail.com' />
           </div>
-          <div>
+          <div className='mb-5'>
             <span className='text-xs'>Create password</span> <br />
-            <input type="text" className='border w-full p-3 rounded-lg mt-1' placeholder='At least 8 characters' /> <br />
+            <input type="text" className='border w-full p-3 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)]' placeholder='At least 8 characters' /> <br />
           </div>
           <div>
             <span className='text-xs'>Confirm Password</span> <br />
-            <input type="text" className='border w-full p-3 rounded-lg mt-1' placeholder='At least 8 characters' /> <br />
+            <input type="text" className='border w-full p-3 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)]' placeholder='At least 8 characters' /> <br />
           </div>
           <div className='mt-4'>
             <span className='text-xs text-[#737373]'>Password must contain at least 8 characters</span> <br />

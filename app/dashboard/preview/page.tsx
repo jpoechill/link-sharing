@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image'
 import Link from 'next/link'
 import avatar from '../../../public/avatar.png'
@@ -15,14 +17,11 @@ export default function Home() {
             </Link>
           </div>
           <div>
-            <button className='text-white px-4 py-2 rounded bg-[#633CFF]'>
+            <button className='text-white px-4 py-2 rounded bg-[#633CFF]' onClick={(e) => alert('Share this link.')}>
               Share Link
             </button>
           </div>
         </div>
-
-
-        {/* <div className="relative h-32 w-32 border bg-black"> */}
         <div className="mx-auto absolute h-14 inset-x-0 bottom-[150px]">
           <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white round shadow rounded-xl w-[350px] h-[570px]'>
             <div className='rounded-full w-[104px] h-[104px] bg-black'>

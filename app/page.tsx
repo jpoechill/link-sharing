@@ -13,14 +13,14 @@ export default function Home() {
         <div className='w-full text-left'>
           <div className='mb-5'>
             <span className='text-xs'>Email Address</span> <br />
-            <input type="text" className='border w-full p-3 rounded-lg mt-1' placeholder='e.g. alex@gmail.com' />
+            <input type="text" className='border w-full p-3 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)]' placeholder='e.g. alex@gmail.com' />
           </div>
           <div>
             <span className='text-xs'>Password</span> <br />
-            <input type="text" className='border w-full p-3 rounded-lg mt-1' placeholder='Enter your password' /> <br />
+            <input type="text" className='border w-full p-3 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)]' placeholder='Enter your password' /> <br />
           </div>
           <Link href="/dashboard">
-            <button className='text-white bg-[#633CFF] mt-6 w-full p-3 rounded-lg my-3'>Login</button>
+            <button className='text-white bg-[#633CFF] hover:bg-[#BEADFF] mt-6 w-full p-3 rounded-lg my-3'>Login</button>
           </Link>
           <div className='w-full text-center mt-4'>
             <span className='text-[#737373]'>
