@@ -123,7 +123,7 @@ export default function Home() {
                       <Image src="/img/illustration-empty.svg" className="mx-auto w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
                       <h1 className='text-[32px] font-bold mb-6'>Let&apos; s get you started</h1>
                       <span className="text-[#737373]">
-                        Use the &quot;Add new link&quot; button to get started. Once you have more than one link, you can reorder and edit them. We're here to help you share your profiles with everyone!
+                        Use the &quot;Add new link&quot; button to get started. Once you have more than one link, you can reorder and edit them. We&quot;re here to help you share your profiles with everyone!
                       </span>
                     </div>
                   </div>}
