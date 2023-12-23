@@ -70,8 +70,6 @@ export default function Home() {
             <Image src="/img/logo-devlinks-large.svg" className="" alt="DevLinks logo" width={182} height={40}></Image>
           </Link>
         </div>
-        {/* {BearCounter()}
-        {Controls()} 123 */}
         <div className='flex flex-row'>
           <button className='p-2 px-5 text-[16px] flex flex-row items-center text-[#633CFF] rounded-lg mx-2 bg-[#EFEBFF]'>
             <svg xmlns="http://www.w3.org/2000/svg" className="mr-2" width="16" height="16" fill="none" viewBox="0 0 16 16">
