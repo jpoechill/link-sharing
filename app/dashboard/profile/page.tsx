@@ -128,9 +128,9 @@ export default function Home() {
                   </div>
                   <div className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
 
-                    <form onSubmit={previewFile}>
+                    {/* <form onSubmit={previewFile}>
                       <input type="file" onChange={(e) => previewFile()} /><br />
-                    </form>
+                    </form> */}
 
                     <img src="" id="myImage" height="200px" width="200px" alt="Image preview" />
 
@@ -171,3 +171,4 @@ export default function Home() {
       </main >
     )
   }
+}
