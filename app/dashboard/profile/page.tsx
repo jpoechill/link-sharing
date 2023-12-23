@@ -2,10 +2,82 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import React, { useState } from 'react';
+import usePersonStore from '../../store'
 
 export default function Home() {
+  const updateFirstName = usePersonStore((state) => state.updateFirstName)
+  const [firstName, setFirstNameLocal] = useState(usePersonStore((state) => state.firstName));
+
+  const updateLastName = usePersonStore((state) => state.updateLastName)
+  const [lastName, setLastNameLocal] = useState(usePersonStore((state) => state.lastName));
+
+  const updateEmail = usePersonStore((state) => state.updateEmail)
+  const [email, setEmailLocal] = useState(usePersonStore((state) => state.email));
+
+
+
+  const [file, setFile] = useState<File>()
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!file) return
+
+    try {
+      const data = new FormData()
+      data.set('file', file)
+
+      alert('I have the file')
+
+      var reader = new FileReader();
+      reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('output');
+        output.src = dataURL;
+      };
+      reader.readAsDataURL(input.files[0]);
+      // const res = await fetch('/api/upload', {
+      //   method: 'POST',
+      //   body: data
+      // })
+      // handle the error
+      if (!res.ok) throw new Error(await res.text())
+    } catch (e: any) {
+      // Handle errors here
+      console.error(e)
+    }
+  }
+
+  function previewFile() {
+    const preview = document.getElementById("myImage");
+    const file = document.querySelector("input[type=file]").files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener(
+      "load",
+      () => {
+        // convert image file to base64 string
+        preview.src = reader.result;
+      },
+      false,
+    );
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
   return (
     <main className="flex flex-col items-center p-4 h-full">
+      {/* <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image> */}
+      {/* <form onSubmit={onSubmit}>
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => setFile(e.target.files?.[0])}
+        />
+        <input type="submit" value="Upload" />
+        <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image>
+      </form> */}
       <div className='flex justify-between rounded-[18px] p-5 w-full items-center bg-white text-center'>
         <div>
           <Link href="/">
@@ -23,7 +95,6 @@ export default function Home() {
           </Link>
           <Link href="/dashboard/profile">
             <button className='p-2 px-5 text-[16px] group flex flex-row items-center text-[#633CFF] bg-[#EFEBFF] rounded-lg mx-2'>
-              {/* <Image src="/img/icon-profile-details-header.svg" className="group-hover:fill-[#777777]" width="17" height="17" alt="Preview"></Image> */}
               <svg xmlns="http://www.w3.org/2000/svg" className="mr-2" width="21" height="20" viewBox="0 0 21 20">
                 <path className="fill-[#633CFF]" d="M10.5 1.563A8.437 8.437 0 1 0 18.938 10 8.447 8.447 0 0 0 10.5 1.562ZM6.716 15.357a4.688 4.688 0 0 1 7.568 0 6.54 6.54 0 0 1-7.568 0Zm1.596-5.982a2.188 2.188 0 1 1 4.376 0 2.188 2.188 0 0 1-4.376 0Zm7.344 4.683a6.523 6.523 0 0 0-2.265-1.83 4.062 4.062 0 1 0-5.782 0 6.522 6.522 0 0 0-2.265 1.83 6.562 6.562 0 1 1 10.304 0h.008Z" /></svg>
               Profile Data
@@ -42,7 +113,7 @@ export default function Home() {
         <div className='flex justify-center col-span-5 bg-white h-full p-5 rounded-[18px]'>
           <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
         </div>
-        <div className='col-span-7 relative hover-bg-[#EFEBFF] '>
+        <div className='col-span-7 relative hover-bg-[#EFEBFF]'>
           <div className='bg-white h-full rounded-[18px] flex flex-col justify-between'>
             <div className='p-5'>
               <span className='text-[32px] font-bold'>
@@ -56,7 +127,23 @@ export default function Home() {
                   Profile Picture
                 </div>
                 <div className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
-                  <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image>
+
+                  <form onSubmit={previewFile}>
+                    {/* <input
+          type="file"
+          name="file"
+          onChange={(e) => setFile(e.target.files?.[0])}
+        /> */}
+                    <input type="file" onChange={(e) => previewFile()} /><br />
+
+
+                    {/* <input type="file"
+          name="file" onChange={(e) => setFile(e.target.files?.[0])} /> */}
+                  </form>
+
+                  <img src="" id="myImage" height="200px" width="200px" alt="Image preview" />
+
+                  {/* <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image> */}
                   +Upload Image
                 </div>
                 <div className='flex items-center justify-center text-center p-3 w-[193px] text-[12px]'>
@@ -66,22 +153,22 @@ export default function Home() {
               <div className='round bg-[#FAFAFA] p-3 mt-3 rounded-lg'>
                 <div className='flex justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373]'>First name*</div>
-                  <div><input type="text" placeholder="e.g. John" className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div><input type="text" placeholder="e.g. John" value={firstName} onChange={(e) => setFirstNameLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
                 </div>
                 <div className='flex justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373]'>Last Name*</div>
-                  <div><input type="text" placeholder="e.g. Appleseed" className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div><input type="text" placeholder="e.g. Appleseed" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
                 </div>
                 <div className='flex justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373]'>Email</div>
-                  <div><input type="text" placeholder="e.g. mail@example.com" className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div><input type="text" placeholder="e.g. mail@example.com" value={email} onChange={(e) => setEmailLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
                 </div>
               </div>
             </div>
             <div className="bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button onClick={(e) => alert('The settings have been saved.')} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email) }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>

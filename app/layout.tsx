@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { create } from 'zustand'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,6 +13,12 @@ export const metadata: Metadata = {
   },
 }
 
+const useStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+}))
+
 export default function RootLayout({
   children,
 }: {
@@ -19,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='h-full'>
-      <body className={'h-full ' + inter.className} height->{children}</body>
+      <body className={'h-full ' + inter.className}>{children}</body>
     </html>
   )
 }

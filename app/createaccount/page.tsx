@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="flex flex-col items-center pt-16 lg:pt-[80px] mt-0 lg:mt-8">
-      <Image src="/img/logo-devlinks-large.svg" className="mb-[55px]" alt="DevLinks logo" width={182} height={40}></Image>
+      {/* <Image src="/img/logo-devlinks-large.svg" className="mb-[55px]" alt="DevLinks logo" width={182} height={40}></Image> */}
       <div className='flex flex-col rounded-[18px] p-10 px-12 w-[476px] drop-shadow-2xl items-center bg-white text-center'>
         <div className='w-full text-left mb-8'>
           <h1 className='text-[32px] font-bold mb-2'>Create account</h1>

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react';
+import useStore from '../store'
 
 interface Platforms {
   name: string;
@@ -18,6 +19,16 @@ interface StateProperties {
 
 export default function Home() {
   const [data, setData] = useState<StateProperties[]>([]);
+
+  function BearCounter() {
+    const bears = useStore((state) => state.bears)
+    return <h1>{bears} around here...</h1>
+  }
+
+  function Controls() {
+    const increasePopulation = useStore((state) => state.increasePopulation)
+    return <button onClick={increasePopulation}>one up</button>
+  }
 
   const listOptions: Platforms[] = [
     {
@@ -57,6 +68,11 @@ export default function Home() {
       placeholder: 'https://hasnode.com/johnappleseed/'
     },
   ]
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    alert(e.target.value)
+  }
+
   return (
     <main className="flex flex-col items-center p-4 h-full">
       <div className='flex justify-between rounded-[18px] p-5 w-full items-center bg-white text-center'>
@@ -65,6 +81,8 @@ export default function Home() {
             <Image src="/img/logo-devlinks-large.svg" className="" alt="DevLinks logo" width={182} height={40}></Image>
           </Link>
         </div>
+        {/* {BearCounter()}
+        {Controls()} 123 */}
         <div className='flex flex-row'>
           <button className='p-2 px-5 text-[16px] flex flex-row items-center text-[#633CFF] rounded-lg mx-2 bg-[#EFEBFF]'>
             <svg xmlns="http://www.w3.org/2000/svg" className="mr-2" width="16" height="16" fill="none" viewBox="0 0 16 16">
@@ -146,9 +164,9 @@ export default function Home() {
                       </div>
                       <br />
                       <label className='text-[12px]'>Platform</label>
-                      <select name="cars" className="custom-select my-2 px-5 border w-full p-3 rounded-lg" id="cars">
+                      <select name="cars" className="my-2 px-5 border w-full p-3 rounded-lg" id="cars" onChange={(e) => handleChange(e)} >
                         {listOptions.map((item, optionIndex) => (
-                          <option key={optionIndex} value="volvo">{item.name}</option>
+                          <option key={optionIndex} value={item.name}>{item.name}</option>
                         ))}
                       </select>
                       <div className='text-[12px]'>Link</div>
