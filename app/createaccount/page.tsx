@@ -48,7 +48,7 @@ export default function Home() {
                 <div className=''><Image src="../../img/icon-email.svg" width={13} height={10} alt="Email Icon" /></div>
                 <div className='text-[#FF3939] text-[12px]'>
                   <span className={emailIsValid === false ? '' : 'hidden'}>
-                    Can't be empty
+                    Can&apos;t be empty
                   </span>
                 </div>
               </div>
