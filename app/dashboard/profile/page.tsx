@@ -74,6 +74,11 @@ export default function Home() {
     }
   };
 
+  const openFile = () => {
+    const preview = document.getElementById("file") as HTMLFormElement;
+    preview.click();
+  }
+
   return (
     <main className="flex flex-col items-center p-4 h-full">
       {/* <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image> */}
@@ -134,15 +139,12 @@ export default function Home() {
                 <div className='flex items-center justify-center w-[193px] text-[12px]'>
                   Profile Picture
                 </div>
-                <div className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
-
-                  <form>
-                    <input type="file" onChange={handleSubmit} /><br />
+                <div onClick={() => openFile()} className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
+                  <form className='hidden'>
+                    <input type="file" id="file" onChange={handleSubmit} /><br />
                   </form>
-
                   <Image src="" id="myImage" height={200} width={200} alt="Image preview" />
-
-                  {/* <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image> */}
+                  <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image>
                   +Upload Image
                 </div>
                 <div className='flex items-center justify-center text-center p-3 w-[193px] text-[12px]'>
