@@ -48,6 +48,9 @@ export default function Home() {
   // }
 
   function previewFile(e: Event) {
+  }
+
+  const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
     const target = e.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
@@ -69,7 +72,7 @@ export default function Home() {
     if (file) {
       reader.readAsDataURL(file);
     }
-  }
+  };
 
   return (
     <main className="flex flex-col items-center p-4 h-full">
@@ -133,11 +136,11 @@ export default function Home() {
                 </div>
                 <div className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
 
-                  <form onSubmit={previewFile}>
-                    <input type="file" onChange={(e) => previewFile(e)} /><br />
+                  <form>
+                    <input type="file" onChange={handleSubmit} /><br />
                   </form>
 
-                  <img src="" id="myImage" height="200px" width="200px" alt="Image preview" />
+                  <Image src="" id="myImage" height={200} width={200} alt="Image preview" />
 
                   {/* <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image> */}
                   +Upload Image
