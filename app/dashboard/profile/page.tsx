@@ -60,7 +60,7 @@ export default function Home() {
       () => {
         // convert image file to base64 string
         // if (preview) {
-        preview.src = reader.result;
+        preview.src = String(reader.result);
         // }
       },
       false,
