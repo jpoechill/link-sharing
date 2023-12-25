@@ -3,8 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import avatar from '../../../public/avatar.png'
+import usePersonStore from '../../store'
 
 export default function Home() {
+  const firstName = usePersonStore((state) => state.firstName)
+  const lastName = usePersonStore((state) => state.lastName)
+  const email = usePersonStore((state) => state.email)
+
   return (
     <main className="flex flex-col items-centerh-full">
       <div className='relative bg-[#633CFF] w-full p-4 h-[357px]'>
@@ -36,9 +41,9 @@ export default function Home() {
               />
               {/* <Image src='/avatar.png' sizes="100vw" alt="User Avatar" style={{ width: '100%', height: 'auto' }}></Image> */}
             </div>
-            <span className='text-[32px] font-bold mt-6'>Ben Wright</span>
+            <span className='text-[32px] font-bold mt-6'>{firstName} {lastName}</span>
             <div className='mt-3 mb-10 text-[#737373]'>
-              ben@example.com
+              {email || 'ben@example.com'}
             </div>
             <div className="flex flex-col">
               <button className='rounded-lg bg-black text-white p-4 flex w-[240px] my-2'>

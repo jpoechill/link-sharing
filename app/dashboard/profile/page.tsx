@@ -47,23 +47,28 @@ export default function Home() {
   //   }
   // }
 
-  function previewFile() {
-    const preview = document.getElementById("myImage");
-    // const file = document.querySelector("input[type=file]").files[0];
-    //   const reader = new FileReader();
+  function previewFile(e: Event) {
+    const preview = document.getElementById("myImage") as HTMLImageElement;
+    const target = e.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
 
-    //   reader.addEventListener(
-    //     "load",
-    //     () => {
-    //       // convert image file to base64 string
-    //       preview.src = reader.result;
-    //     },
-    //     false,
-    //   );
+    // const file: File = e!.target!.files[0];
+    const reader = new FileReader();
 
-    //   if (file) {
-    //     reader.readAsDataURL(file);
-    //   }
+    reader.addEventListener(
+      "load",
+      () => {
+        // convert image file to base64 string
+        // if (preview) {
+        preview.src = reader.result;
+        // }
+      },
+      false,
+    );
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }
 
   return (
@@ -128,9 +133,9 @@ export default function Home() {
                 </div>
                 <div className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
 
-                  {/* <form onSubmit={previewFile}>
-                      <input type="file" onChange={(e) => previewFile()} /><br />
-                    </form> */}
+                  <form onSubmit={previewFile}>
+                    <input type="file" onChange={(e) => previewFile(e)} /><br />
+                  </form>
 
                   <img src="" id="myImage" height="200px" width="200px" alt="Image preview" />
 
