@@ -8,47 +8,11 @@ import usePersonStore from '../../store'
 export default function Home() {
   const updateFirstName = usePersonStore((state) => state.updateFirstName)
   const [firstName, setFirstNameLocal] = useState(usePersonStore((state) => state.firstName));
-
   const updateLastName = usePersonStore((state) => state.updateLastName)
   const [lastName, setLastNameLocal] = useState(usePersonStore((state) => state.lastName));
-
   const updateEmail = usePersonStore((state) => state.updateEmail)
   const [email, setEmailLocal] = useState(usePersonStore((state) => state.email));
-
-
-
-  const [file, setFile] = useState<File>()
-  // const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
-  //   if (!file) return
-
-  //   try {
-  //     const data = new FormData()
-  //     data.set('file', file)
-
-  //     alert('I have the file')
-
-  //     var reader = new FileReader();
-  //     reader.onload = function () {
-  //       var dataURL = reader.result;
-  //       var output = document.getElementById('output');
-  //       output.src = dataURL;
-  //     };
-  //     reader.readAsDataURL(input.files[0]);
-  //     // const res = await fetch('/api/upload', {
-  //     //   method: 'POST',
-  //     //   body: data
-  //     // })
-  //     // handle the error
-  //     if (!res.ok) throw new Error(await res.text())
-  //   } catch (e: any) {
-  //     // Handle errors here
-  //     console.error(e)
-  //   }
-  // }
-
-  function previewFile(e: Event) {
-  }
+  const [showImageIcon, setShowImageIcon] = useState(true);
 
   const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
@@ -64,6 +28,9 @@ export default function Home() {
         // convert image file to base64 string
         // if (preview) {
         preview.src = String(reader.result);
+        preview.width = 100
+        preview.height = 100
+        setShowImageIcon(false)
         // }
       },
       false,
@@ -74,13 +41,35 @@ export default function Home() {
     }
   };
 
+  const condition = showImageIcon === true ? " " : " hidden"
+
   const openFile = () => {
     const preview = document.getElementById("file") as HTMLFormElement;
+
     preview.click();
+  }
+
+  const showSaveSuccess = () => {
+    const popUp = document.getElementById("successSaveBadge") as HTMLElement;
+
+    popUp.classList.remove("opacity-0");
+    popUp.classList.add('opacity-100')
+
+    setTimeout(() => {
+      popUp.classList.remove("opacity-100");
+      popUp.classList.add('opacity-0')
+    }, 2000)
   }
 
   return (
     <main className="flex flex-col items-center p-4 h-full">
+      <div className='fixed bottom-[30px] z-[100]'>
+        <div id="successSaveBadge" className='flex bg-black text-white p-5 rounded-lg opacity-0 transition duration-500 ease-in-out'>
+          <Image src="../../img/icon-changes-saved.svg" width={20} height={20} className='mr-3' alt="Saved Successfully" />
+          Your changes have been successfully saved!
+        </div>
+      </div>
+      {/* <button onClick={showSaveSuccess}>Click</button> */}
       {/* <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image> */}
       {/* <form onSubmit={onSubmit}>
         <input
@@ -139,16 +128,22 @@ export default function Home() {
                 <div className='flex items-center justify-center w-[193px] text-[12px]'>
                   Profile Picture
                 </div>
-                <div onClick={() => openFile()} className='flex flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
+                <div onClick={() => openFile()} className='flex cursor-pointer flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
                   <form className='hidden'>
                     <input type="file" id="file" onChange={handleSubmit} /><br />
                   </form>
-                  <Image src="" id="myImage" height={200} width={200} alt="Image preview" />
-                  <Image src="/img/icon-upload-image.svg" className="mb-3" width={32} height={32} alt="Upload Image"></Image>
-                  +Upload Image
+                  <Image src="" id="myImage" className={`${showImageIcon === true ? "hidden" : ""}`} height={0} width={0} alt="Image preview" />
+                  <div className={`flex flex-col items-center justify-center mb-3 ${showImageIcon === true ? " " : " hidden"}`}>
+                    <Image src="/img/icon-upload-image.svg" className={`my-3`} width={32} height={32} alt="Upload Image"></Image>
+                    +Upload Image
+                  </div>
                 </div>
+                {/* <div className={`mb-3 ${condition}`}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae tenetur, adipisci laudantium inventore veniam rem voluptatibus odit optio nam harum nesciunt voluptas fugiat labore ipsam sapiente culpa libero nisi. Voluptatum tenetur eius fugiat illum perspiciatis ut in a aperiam nobis modi? Perferendis repellendus suscipit voluptatibus sunt numquam voluptas provident sapiente omnis! Deleniti cumque quisquam non et odit omnis reiciendis, expedita maiores. Aperiam ab animi velit, nulla atque soluta ducimus iure amet eos eum, totam praesentium fugit minima dignissimos reprehenderit quam rem accusantium voluptatem nobis placeat ea consequuntur error? Ipsa distinctio aliquid temporibus quae iste hic aspernatur? Placeat voluptas sit omnis.
+                </div> */}
                 <div className='flex items-center justify-center text-center p-3 w-[193px] text-[12px]'>
-                  Image must be below 1024x1024px. <br />Use PNG or JPG format.
+                  Image must be below 1024x1024px. <br />Use PNG or JPG format. <br />
+                  aaa{String(showImageIcon)}aaa
                 </div>
               </div>
               <div className='round bg-[#FAFAFA] p-3 mt-3 rounded-lg'>
@@ -169,7 +164,7 @@ export default function Home() {
             <div className="bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email) }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email); showSaveSuccess(); }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>

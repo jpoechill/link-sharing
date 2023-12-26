@@ -62,8 +62,26 @@ export default function Home() {
     alert(e.target.value)
   }
 
+  const showSaveSuccess = () => {
+    const popUp = document.getElementById("successSaveBadge") as HTMLElement;
+
+    popUp.classList.remove("opacity-0");
+    popUp.classList.add('opacity-100')
+
+    setTimeout(() => {
+      popUp.classList.remove("opacity-100");
+      popUp.classList.add('opacity-0')
+    }, 2000)
+  }
+
   return (
     <main className="flex flex-col items-center p-4 h-full">
+      <div className='fixed bottom-[30px] z-[100]'>
+        <div id="successSaveBadge" className='flex bg-black text-white p-5 rounded-lg opacity-0 transition duration-500 ease-in-out'>
+          <Image src="../../img/icon-changes-saved.svg" width={20} height={20} className='mr-3' alt="Saved Successfully" />
+          Your changes have been successfully saved!
+        </div>
+      </div>
       <div className='flex justify-between rounded-[18px] p-5 w-full items-center bg-white text-center'>
         <div>
           <Link href="/">
@@ -167,7 +185,7 @@ export default function Home() {
             <div className="bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button onClick={(e) => alert('The settings have been saved.')} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => showSaveSuccess()} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>
