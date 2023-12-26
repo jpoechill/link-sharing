@@ -21,6 +21,7 @@ export default function Home() {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [attemptedVerify, setAttemptedVerify] = useState(false)
 
+
   const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
     const target = e.target as HTMLInputElement;
@@ -178,33 +179,11 @@ export default function Home() {
                     +Upload Image
                   </div>
                 </div>
-                {/* <div className={`mb-3 ${condition}`}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae tenetur, adipisci laudantium inventore veniam rem voluptatibus odit optio nam harum nesciunt voluptas fugiat labore ipsam sapiente culpa libero nisi. Voluptatum tenetur eius fugiat illum perspiciatis ut in a aperiam nobis modi? Perferendis repellendus suscipit voluptatibus sunt numquam voluptas provident sapiente omnis! Deleniti cumque quisquam non et odit omnis reiciendis, expedita maiores. Aperiam ab animi velit, nulla atque soluta ducimus iure amet eos eum, totam praesentium fugit minima dignissimos reprehenderit quam rem accusantium voluptatem nobis placeat ea consequuntur error? Ipsa distinctio aliquid temporibus quae iste hic aspernatur? Placeat voluptas sit omnis.
-                </div> */}
                 <div className='flex items-center justify-center text-center p-3 w-[193px] text-[12px]'>
                   Image must be below 1024x1024px. <br />Use PNG or JPG format. <br />
                   aaa{String(showImageIcon)}aaa
                 </div>
               </div>
-
-              {/* <div className='mb-5'>
-                <span className='text-xs'>Create Password</span> <br />
-                <div className="relative flex">
-                  <div className="rounded-lg absolute pointer-events-none flex justify-between items-center w-full p-3 mt-2">
-                    <div className='text-[12px]'>
-                      <Image src="../../img/icon-password.svg" className='inline' width={13} height={10} alt="Email Icon" />&nbsp;
-                    </div>
-                    <div className='text-[#FF3939] text-[12px]'>
-                      <span className={passwordIsValid === false ? '' : 'hidden'}>
-                        Please check again
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <input type="password" onChange={(e) => setPassword(e.target.value)} className={`
-            border w-full p-3 pl-10 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)] 
-            ${(passwordIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} placeholder='At least 8 characters' />
-              </div> */}
 
               <div className='round bg-[#FAFAFA] p-3 mt-3 rounded-lg'>
                 <div className='flex justify-between items-center my-3'>

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react';
+import usePersonStore from '../store'
 
 interface Platforms {
   name: string;
@@ -14,10 +15,17 @@ interface Platforms {
 interface StateProperties {
   options: Platforms[];
   selected: number;
+  link: string;
 }
 
 export default function Home() {
   const [data, setData] = useState<StateProperties[]>([]);
+
+
+  const userLinks = usePersonStore((state) => state.links)
+  const [userLinksLocal, setUserLinksLocal] = useState("");
+
+  const updateUserLinks = usePersonStore((state) => state.updateUserLinks)
 
   const listOptions: Platforms[] = [
     {
@@ -103,7 +111,9 @@ export default function Home() {
               Profile Data
             </button>
           </Link>
-        </div>
+        </div>{userLinks.map((item) => item.name)}
+        <input type="text" value={userLinksLocal} onChange={(e) => setUserLinksLocal(e.target.value)} />
+        <button onClick={() => { updateUserLinks(userLinksLocal); setUserLinksLocal("") }}>Click</button>
         <div>
           <Link href="/dashboard/preview">
             <button className='px-4 py-2 text-[16px] mx-2 rounded border border-[#633CFF] hover:bg-[#EFEBFF] text-[#633CFF]'>
@@ -134,6 +144,7 @@ export default function Home() {
                     {
                       options: listOptions,
                       selected: 0,
+                      link: ''
                     }
                   ])
                 } className='border w-full p-2 px-5 text-[#633CFF] hover:bg-[#EFEBFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
@@ -175,7 +186,19 @@ export default function Home() {
                         ))}
                       </select>
                       <div className='text-[12px]'>Link</div>
-                      <input type="text" placeholder={item.options[index].placeholder} className="mt-2 border w-full p-3 rounded-lg" />
+                      <input type="text" value={item.link} onChange={(e) => {
+                        setData(
+                          data.map((link, linkIndex) => {
+                            if (linkIndex === index) {
+                              // Create a *new* object with changes
+                              return { ...link, link: e.target.value };
+                            } else {
+                              // No changes
+                              return link;
+                            }
+                          })
+                        )
+                      }} placeholder={item.options[index].placeholder} className="mt-2 border w-full p-3 rounded-lg" />
                     </div>
                   </div>
                 ))}
