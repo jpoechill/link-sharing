@@ -2,10 +2,12 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePersonStore from '../../store'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter();
   const updateFirstName = usePersonStore((state) => state.updateFirstName)
   const [firstName, setFirstNameLocal] = useState(usePersonStore((state) => state.firstName));
   const updateLastName = usePersonStore((state) => state.updateLastName)
@@ -13,6 +15,11 @@ export default function Home() {
   const updateEmail = usePersonStore((state) => state.updateEmail)
   const [email, setEmailLocal] = useState(usePersonStore((state) => state.email));
   const [showImageIcon, setShowImageIcon] = useState(true);
+
+  const [firstNameIsValid, setFirstNameIsValid] = useState(true);
+  const [lastNameIsValid, setLastNameIsValid] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [attemptedVerify, setAttemptedVerify] = useState(false)
 
   const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
@@ -41,7 +48,7 @@ export default function Home() {
     }
   };
 
-  const condition = showImageIcon === true ? " " : " hidden"
+
 
   const openFile = () => {
     const preview = document.getElementById("file") as HTMLFormElement;
@@ -60,6 +67,39 @@ export default function Home() {
       popUp.classList.add('opacity-0')
     }, 2000)
   }
+
+  function verifyCreds() {
+    // email must be valid
+    // email must not be empty
+    if (firstName !== '') {
+      setFirstNameIsValid(true)
+    } else {
+      setFirstNameIsValid(false)
+    }
+    if (lastName !== '') {
+      setLastNameIsValid(true)
+    } else {
+      setLastNameIsValid(false)
+    }
+    // if (email !== '') {
+    //   setEmailIsValid(true)
+    // } else {
+    //   setEmailIsValid(false)
+    // }
+    // password must be at least 8 characters
+    // password must match passwordVerify
+
+    // if (password !== passwordVerify) {
+    //   alert('Passwords do not match')
+    // }
+    setAttemptedVerify(true)
+  }
+
+  useEffect(() => {
+    if (firstNameIsValid && lastNameIsValid && attemptedVerify) {
+      showSaveSuccess()
+    }
+  }, [router, firstNameIsValid, lastNameIsValid, attemptedVerify]);
 
   return (
     <main className="flex flex-col items-center p-4 h-full">
@@ -146,25 +186,78 @@ export default function Home() {
                   aaa{String(showImageIcon)}aaa
                 </div>
               </div>
+
+              {/* <div className='mb-5'>
+                <span className='text-xs'>Create Password</span> <br />
+                <div className="relative flex">
+                  <div className="rounded-lg absolute pointer-events-none flex justify-between items-center w-full p-3 mt-2">
+                    <div className='text-[12px]'>
+                      <Image src="../../img/icon-password.svg" className='inline' width={13} height={10} alt="Email Icon" />&nbsp;
+                    </div>
+                    <div className='text-[#FF3939] text-[12px]'>
+                      <span className={passwordIsValid === false ? '' : 'hidden'}>
+                        Please check again
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <input type="password" onChange={(e) => setPassword(e.target.value)} className={`
+            border w-full p-3 pl-10 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)] 
+            ${(passwordIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} placeholder='At least 8 characters' />
+              </div> */}
+
               <div className='round bg-[#FAFAFA] p-3 mt-3 rounded-lg'>
                 <div className='flex justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373]'>First name*</div>
-                  <div><input type="text" placeholder="e.g. John" value={firstName} onChange={(e) => setFirstNameLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div className='relative'>
+                    <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
+                      <div className='text-[#FF3939] text-[12px]'>
+                        <span className={firstNameIsValid === false ? '' : 'hidden'}>
+                          Can&apos;t be empty
+                        </span>
+                      </div>
+                    </div>
+                    <input type="text" placeholder="e.g. John" value={firstName} onChange={(e) => setFirstNameLocal(e.target.value)}
+                      className={`w-[432px] p-3 rounded-lg border
+                      ${(firstNameIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
+                  </div>
                 </div>
                 <div className='flex justify-between items-center my-3'>
-                  <div className='text-[16px] text-[#737373]'>Last Name*</div>
-                  <div><input type="text" placeholder="e.g. Appleseed" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div className='text-[16px] text-[#737373]'>Last name*</div>
+                  <div className='relative'>
+                    <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
+                      <div className='text-[#FF3939] text-[12px]'>
+                        <span className={lastNameIsValid === false ? '' : 'hidden'}>
+                          Can&apos;t be empty
+                        </span>
+                      </div>
+                    </div>
+                    <input type="text" placeholder="e.g. Appleseed" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)}
+                      className={`w-[432px] p-3 rounded-lg border
+                      ${(lastNameIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
+                  </div>
                 </div>
                 <div className='flex justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373]'>Email</div>
-                  <div><input type="text" placeholder="e.g. mail@example.com" value={email} onChange={(e) => setEmailLocal(e.target.value)} className='w-[432px] p-3 rounded-lg border' /></div>
+                  <div className='relative'>
+                    <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
+                      <div className='text-[#FF3939] text-[12px]'>
+                        <span className={emailIsValid === false ? '' : 'hidden'}>
+                          Can&apos;t be empty
+                        </span>
+                      </div>
+                    </div>
+                    <input type="text" placeholder="e.g. mail@example.com" value={email} onChange={(e) => setEmailLocal(e.target.value)}
+                      className={`w-[432px] p-3 rounded-lg border
+                      ${(emailIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
+                  </div>
                 </div>
               </div>
             </div>
             <div className="bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email); showSaveSuccess(); }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email); verifyCreds(); }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>
