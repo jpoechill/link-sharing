@@ -5,6 +5,7 @@ type State = {
   lastName: string
   email: string
   links: Link[]
+  userImage: string
 }
 
 interface Platforms {
@@ -16,7 +17,7 @@ interface Platforms {
 
 type Link = {
   name: string
-  url?: string
+  url: string
 }
 
 type StateProperties = {
@@ -29,7 +30,9 @@ type Action = {
   updateFirstName: (firstName: State['firstName']) => void
   updateLastName: (lastName: State['lastName']) => void
   updateEmail: (email: State['email']) => void
-  updateUserLinks: (updatedLink: string) => void
+  updateUserImage: (image: State['userImage']) => void
+  updateUserLinks: (updatedLink: Link[]) => void
+  removeUserLinks: (linkIndex: number) => void
 }
 
 // Create your store, which includes both state and (optionally) actions
@@ -37,19 +40,27 @@ const usePersonStore = create<State & Action>((set) => ({
   firstName: '',
   lastName: '',
   email: '',
-  links: [{ name: 'cat' }],
+  links: [],
+  userImage: '',
+  updateUserImage: (userImage) => set(() => ({ userImage: userImage })),
   updateFirstName: (firstName) => set(() => ({ firstName: firstName })),
   updateLastName: (lastName) => set(() => ({ lastName: lastName })),
   updateEmail: (email) => set(() => ({ email: email })),
-  updateUserLinks: (updatedLink) => set((state) => ({
-    links:
-      state.links.map((item, index) => {
-        if (index === 0) {
-          return { ...item, name: updatedLink };
-        } else {
-          return item;
-        }
-      })
+  removeUserLinks: (linkIndex) => set((state) => ({
+    // links: [...state.links, { 'name': 'github', 'url': updatedLink }],
+    links: state.links.filter((item, index) => {
+      return index !== linkIndex;
+    })
+  })),
+  updateUserLinks: (updatedLinks) => set((state) => ({
+    links: updatedLinks,
+    // state.links.map((item, index) => {
+    //   if (index === 0) {
+    //     return { ...item, name: updatedLink };
+    //   } else {
+    //     return item;
+    //   }
+    // })
   }))
 }))
 

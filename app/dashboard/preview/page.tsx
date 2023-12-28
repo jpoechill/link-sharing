@@ -4,11 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import avatar from '../../../public/avatar.png'
 import usePersonStore from '../../store'
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
   const firstName = usePersonStore((state) => state.firstName)
   const lastName = usePersonStore((state) => state.lastName)
   const email = usePersonStore((state) => state.email)
+
+  const [image64Bit, setImage64Bit] = useState(usePersonStore((state) => state.userImage));
 
   const showSaveSuccess = () => {
     const popUp = document.getElementById("successSaveBadge") as HTMLElement;
@@ -47,19 +50,25 @@ export default function Home() {
         </div>
         <div className="mx-auto absolute h-14 inset-x-0 bottom-[150px]">
           <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white mb-10 round shadow rounded-xl w-[350px]'>
-            <div className='rounded-full w-[104px] h-[104px] mt-12 bg-black'>
+            <div className='relative rounded-full z-10 w-[104px] h-[104px] mt-12 bg-black'>
+
               <Image
-                src={avatar}
+                src={`${image64Bit}`}
                 alt="Picture of the author"
-                sizes="100vw"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
+                // sizes="100vw"
+                className='bg-cover absolute z-0 bg-center rounded-full object-cover min-h-full min-w-full'
+                fill
+              // width={100}
+              // height="100"
+              // style={{
+              //   width: '100%',
+              //   height: 'auto',
+              // }}
               />
               {/* <Image src='/avatar.png' sizes="100vw" alt="User Avatar" style={{ width: '100%', height: 'auto' }}></Image> */}
             </div>
             <span className='text-[32px] font-bold mt-6'>{firstName} {lastName}</span>
+            {/* {image64Bit} */}
             <div className='mt-3 mb-10 text-[#737373]'>
               {email || 'ben@example.com'}
             </div>

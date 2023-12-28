@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 import usePersonStore from '../store'
 
 interface Platforms {
+  title: string;
   name: string;
   icon: string;
-  link: string;
   placeholder: string;
 }
 
@@ -20,55 +20,100 @@ interface StateProperties {
 
 export default function Home() {
   const [data, setData] = useState<StateProperties[]>([]);
-
-
   const userLinks = usePersonStore((state) => state.links)
-  const [userLinksLocal, setUserLinksLocal] = useState("");
+  const [userLinksLocal, setUserLinksLocal] = useState(userLinks);
+
+
 
   const updateUserLinks = usePersonStore((state) => state.updateUserLinks)
+  // const removeUserLinks = usePersonStore((state) => state.removeUserLinks)
 
   const listOptions: Platforms[] = [
     {
-      name: 'GitHub',
+      title: 'CodePen',
+      name: 'codepen',
       icon: 'github',
-      link: 'asds',
       placeholder: 'https://github.com/johnappleseed/'
     },
     {
-      name: 'Youtube',
+      title: 'CodeWars',
+      name: 'codewars',
       icon: 'github',
-      link: 'asds',
-      placeholder: 'https://youtube.com/johnappleseed/'
+      placeholder: 'https://github.com/johnappleseed/'
     },
     {
-      name: 'LinkedIn',
+      title: 'DevTo',
+      name: 'devto',
       icon: 'github',
-      link: 'asds',
-      placeholder: 'https://linkedin.com/johnappleseed/'
+      placeholder: 'https://github.com/johnappleseed/'
     },
     {
-      name: 'Facebook',
-      icon: 'github',
-      link: 'asds',
+      title: 'Facebook',
+      name: 'facebook',
+      icon: 'facebook',
       placeholder: 'https://facebook.com/johnappleseed/'
     },
     {
-      name: 'Frontend Mentor',
+      title: 'freeCodeCamp',
+      name: 'freecodecamp',
       icon: 'github',
-      link: 'asds',
+      placeholder: 'https://github.com/johnappleseed/'
+    },
+    {
+      title: 'Frontend Mentor',
+      name: 'frontendmentor',
+      icon: 'facebook',
+      placeholder: 'https://facebook.com/johnappleseed/'
+    },
+    {
+      title: 'GitHub',
+      name: 'github',
+      icon: 'github',
+      placeholder: 'https://github.com/johnappleseed/'
+    },
+    {
+      title: 'GitLab',
+      name: 'gitlab',
+      icon: 'github',
+      placeholder: 'https://github.com/johnappleseed/'
+    },
+    {
+      title: 'Hashnode',
+      name: 'hashnode',
+      icon: 'hashnode',
+      placeholder: 'https://hashnode.com/johnappleseed/'
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      icon: 'github',
+      placeholder: 'https://linkedin.com/johnappleseed/'
+    },
+    {
+      title: 'Stack Overflow',
+      name: 'stackoverflow',
+      icon: 'github',
       placeholder: 'https://frontendmentor.com/johnappleseed/'
     },
     {
-      name: 'Hashnode',
+      title: 'Twitch',
+      name: 'twitch',
       icon: 'github',
-      link: 'asds',
-      placeholder: 'https://hasnode.com/johnappleseed/'
+      placeholder: 'https://frontendmentor.com/johnappleseed/'
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      icon: 'github',
+      placeholder: 'https://frontendmentor.com/johnappleseed/'
+    },
+    {
+      title: 'Youtube',
+      name: 'youtube',
+      icon: 'github',
+      placeholder: 'https://youtube.com/johnappleseed/'
     },
   ]
-
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    alert(e.target.value)
-  }
 
   const showSaveSuccess = () => {
     const popUp = document.getElementById("successSaveBadge") as HTMLElement;
@@ -111,9 +156,7 @@ export default function Home() {
               Profile Data
             </button>
           </Link>
-        </div>{userLinks.map((item) => item.name)}
-        <input type="text" value={userLinksLocal} onChange={(e) => setUserLinksLocal(e.target.value)} />
-        <button onClick={() => { updateUserLinks(userLinksLocal); setUserLinksLocal("") }}>Click</button>
+        </div>
         <div>
           <Link href="/dashboard/preview">
             <button className='px-4 py-2 text-[16px] mx-2 rounded border border-[#633CFF] hover:bg-[#EFEBFF] text-[#633CFF]'>
@@ -125,7 +168,27 @@ export default function Home() {
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
         <div className='col-span-5'>
           <div className='flex justify-center bg-white p-5 py-[70px] rounded-[18px]'>
-            <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
+            <svg xmlns="http://www.w3.org/2000/svg" width="308" height="632" fill="none" viewBox="0 0 308 632">
+              <path stroke="#737373" d="M1 54.5C1 24.953 24.953 1 54.5 1h199C283.047 1 307 24.953 307 54.5v523c0 29.547-23.953 53.5-53.5 53.5h-199C24.953 631 1 607.047 1 577.5v-523Z" />
+              <path fill="#fff" stroke="#737373" d="M12 55.5C12 30.923 31.923 11 56.5 11h24C86.851 11 92 16.149 92 22.5c0 8.008 6.492 14.5 14.5 14.5h95c8.008 0 14.5-6.492 14.5-14.5 0-6.351 5.149-11.5 11.5-11.5h24c24.577 0 44.5 19.923 44.5 44.5v521c0 24.577-19.923 44.5-44.5 44.5h-195C31.923 621 12 601.077 12 576.5v-521Z" />
+              <circle cx="153.5" cy="112" r="48" fill="#EEE" /><rect width="160" height="16" x="73.5" y="185" fill="#EEE" rx="8" />
+              <rect width="72" height="8" x="117.5" y="214" fill="#EEE" rx="4" />
+
+              asdasd
+              <button className='rounded-lg bg-[#302267] text-white p-4 flex justify-between items-center w-[240px] my-2'>
+                <div className='flex items-center'>
+                  <Image src="../../img/icon-hashnode.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
+                  Hashnode
+                </div>
+                <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
+              </button>
+              <rect width="237" height="44" x="35" y="278" fill="#EEE" rx="8" />
+              <rect width="237" height="44" x="35" y="342" fill="#EEE" rx="8" />
+              <rect width="237" height="44" x="35" y="406" fill="#EEE" rx="8" />
+              <rect width="237" height="44" x="35" y="470" fill="#EEE" rx="8" />
+              <rect width="237" height="44" x="35" y="534" fill="#EEE" rx="8" />
+            </svg>
+            {/* <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image> */}
           </div>
         </div>
         <div className='col-span-7 '>
@@ -138,20 +201,13 @@ export default function Home() {
                 <div className='text-[16px] text-[#737373] mb-7'>
                   Add/edit/remove links below and then share all your profiles with the world! <br />
                 </div>
-                <button onClick={(e) =>
-                  setData([
-                    ...data,
-                    {
-                      options: listOptions,
-                      selected: 0,
-                      link: ''
-                    }
-                  ])
-                } className='border w-full p-2 px-5 text-[#633CFF] hover:bg-[#EFEBFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
+
+                <button onClick={(e) => { setUserLinksLocal([...userLinksLocal, { name: 'github', url: '' }]) }}
+                  className='border w-full p-2 px-5 text-[#633CFF] hover:bg-[#EFEBFF] border-[#633CFF] text-[16px] rounded-lg mt-5'>
                   + Add new link
                 </button>
 
-                {data.length === 0 &&
+                {userLinksLocal.length === 0 &&
                   <div className='flex bg-[#FAFAFA] h-3/4 justify-center mt-5 py-[70px] rounded-lg items-center w-full'>
                     <div className='w-[488px] text-center'>
                       <Image src="/img/illustration-empty.svg" className="mx-auto w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
@@ -161,18 +217,17 @@ export default function Home() {
                       </span>
                     </div>
                   </div>}
-
               </div>
               <div className="m-5 ">
 
-                {data.map((item, index) => (
+                {userLinksLocal.map((item, index) => (
                   <div key={index} className='flex bg-[#FAFAFA] h-3/4 mt-5 mb-4 p-5 rounded-lg w-full'>
                     <div className='w-full'>
                       <div className="flex justify-between">
                         <div>= <span className='font-bold text-[16px] text-[#737373]'>Link #{index + 1}</span></div>
                         <button onClick={(e) =>
-                          setData(
-                            data.filter(function (link, linkIndex) {
+                          setUserLinksLocal(
+                            userLinksLocal.filter(function (link, linkIndex) {
                               return linkIndex !== index
                             })
                           )}
@@ -180,25 +235,37 @@ export default function Home() {
                       </div>
                       <br />
                       <label className='text-[12px]'>Platform</label>
-                      <select name="cars" className="my-2 px-5 border w-full p-3 rounded-lg" id="cars" onChange={(e) => handleChange(e)} >
-                        {listOptions.map((item, optionIndex) => (
-                          <option key={optionIndex} value={item.name}>{item.name}</option>
+                      <select name="linkOptions" className="my-2 px-5 border w-full p-3 rounded-lg" id="cars"
+                        onChange={(e) => {
+                          setUserLinksLocal(
+                            userLinksLocal.map((link, linkIndex) => {
+                              if (linkIndex === index) {
+                                return {
+                                  ...link,
+                                  name: e.target.value,
+                                }
+                              } else {
+                                return link;
+                              }
+                            })
+                          )
+                        }} >
+                        {listOptions.map((listOptionItem, optionIndex) => (
+                          <option key={optionIndex} value={listOptionItem.name} selected={listOptionItem.name === item.name}>{listOptionItem.title}</option>
                         ))}
                       </select>
                       <div className='text-[12px]'>Link</div>
-                      <input type="text" value={item.link} onChange={(e) => {
-                        setData(
-                          data.map((link, linkIndex) => {
+                      <input type="text" value={item.url} onChange={(e) => {
+                        setUserLinksLocal(
+                          userLinksLocal.map((link, linkIndex) => {
                             if (linkIndex === index) {
-                              // Create a *new* object with changes
-                              return { ...link, link: e.target.value };
+                              return { ...link, url: e.target.value };
                             } else {
-                              // No changes
                               return link;
                             }
                           })
                         )
-                      }} placeholder={item.options[index].placeholder} className="mt-2 border w-full p-3 rounded-lg" />
+                      }} placeholder={listOptions.find((listOptionItem) => listOptionItem.name === item.name)?.placeholder} className="mt-2 border w-full p-3 rounded-lg" />
                     </div>
                   </div>
                 ))}
@@ -208,7 +275,7 @@ export default function Home() {
             <div className="bottom-0 right-0 w-full">
               <hr />
               <div className="flex justify-end w-full">
-                <button onClick={(e) => showSaveSuccess()} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
+                <button onClick={(e) => { updateUserLinks(userLinksLocal); showSaveSuccess(); }} className="border p-3 px-5 rounded-lg bg-[#633CFF] m-5 text-white">
                   Save
                 </button>
               </div>

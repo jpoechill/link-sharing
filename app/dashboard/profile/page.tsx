@@ -16,18 +16,18 @@ export default function Home() {
   const [email, setEmailLocal] = useState(usePersonStore((state) => state.email));
   const [showImageIcon, setShowImageIcon] = useState(true);
 
+  const [image64Bit, setImage64Bit] = useState(usePersonStore((state) => state.userImage));
+  const updateImageStore = usePersonStore((state) => state.updateUserImage)
+
   const [firstNameIsValid, setFirstNameIsValid] = useState(true);
   const [lastNameIsValid, setLastNameIsValid] = useState(true);
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [attemptedVerify, setAttemptedVerify] = useState(false)
 
-
   const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
     const target = e.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
-
-    // const file: File = e!.target!.files[0];
     const reader = new FileReader();
 
     reader.addEventListener(
@@ -36,8 +36,12 @@ export default function Home() {
         // convert image file to base64 string
         // if (preview) {
         preview.src = String(reader.result);
-        preview.width = 100
-        preview.height = 100
+
+        setImage64Bit(String(reader.result));
+        updateImageStore(String(reader.result))
+
+        preview.width = 193
+        preview.height = 193
         setShowImageIcon(false)
         // }
       },
@@ -50,10 +54,8 @@ export default function Home() {
   };
 
 
-
   const openFile = () => {
     const preview = document.getElementById("file") as HTMLFormElement;
-
     preview.click();
   }
 
@@ -110,17 +112,6 @@ export default function Home() {
           Your changes have been successfully saved!
         </div>
       </div>
-      {/* <button onClick={showSaveSuccess}>Click</button> */}
-      {/* <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image> */}
-      {/* <form onSubmit={onSubmit}>
-        <input
-          type="file"
-          name="file"
-          onChange={(e) => setFile(e.target.files?.[0])}
-        />
-        <input type="submit" value="Upload" />
-        <Image id='output' src="" alt="" style={{ height: '100px', width: '100px' }}></Image>
-      </form> */}
       <div className='flex justify-between rounded-[18px] p-5 w-full items-center bg-white text-center'>
         <div>
           <Link href="/">
@@ -153,7 +144,17 @@ export default function Home() {
         </div>
       </div>
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
-        <div className='flex justify-center col-span-5 bg-white h-full p-5 rounded-[18px]'>
+        <div className='flex relative justify-center col-span-5 bg-white h-full items-center rounded-[18px]'>
+          <div className='z-10 absolute flex flex-col border aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
+            <div className='bg-[#EEEEEE] rounded-full w-[96px] h-[96px] mt-2 mb-[24px]'></div>
+            <div className='bg-[#EEEEEE] rounded-full w-[160px] h-[16px] mb-[13px]'></div>
+            <div className='bg-[#EEEEEE] rounded-lg w-[72px] h-[8px] mb-[55px]'></div>
+            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
+            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
+            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
+            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
+            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px]'></div>
+          </div>
           <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
         </div>
         <div className='col-span-7 relative hover-bg-[#EFEBFF]'>
@@ -169,11 +170,15 @@ export default function Home() {
                 <div className='flex items-center justify-center w-[193px] text-[12px]'>
                   Profile Picture
                 </div>
-                <div onClick={() => openFile()} className='flex cursor-pointer flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
+                <div onClick={() => openFile()} className='flex overflow-hidden cursor-pointer relative flex-col items-center text-[#633CFF] font-bold rounded-lg justify-center p-5 bg-[#EFEBFF] w-[193px] h-[193px]'>
+
+                  <div id="bgAvatar" className="absolute flex items-center justify-center rounded-lg w-full h-full">
+                    <Image src="" id="myImage" className={`bg-cover bg-center object-cover min-h-full min-w-full ${showImageIcon === true ? "hidden" : ""}`} height={0} width={0} alt="Image preview" />
+                  </div>
+
                   <form className='hidden'>
                     <input type="file" id="file" onChange={handleSubmit} /><br />
                   </form>
-                  <Image src="" id="myImage" className={`${showImageIcon === true ? "hidden" : ""}`} height={0} width={0} alt="Image preview" />
                   <div className={`flex flex-col items-center justify-center mb-3 ${showImageIcon === true ? " " : " hidden"}`}>
                     <Image src="/img/icon-upload-image.svg" className={`my-3`} width={32} height={32} alt="Upload Image"></Image>
                     +Upload Image
