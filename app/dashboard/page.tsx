@@ -9,6 +9,7 @@ interface Platforms {
   title: string;
   name: string;
   icon: string;
+  bgColor?: string;
   placeholder: string;
 }
 
@@ -24,93 +25,111 @@ export default function Home() {
   const [userLinksLocal, setUserLinksLocal] = useState(userLinks);
 
 
+  const [firstName, setFirstNameLocal] = useState(usePersonStore((state) => state.firstName));
+  const lastName = usePersonStore((state) => state.lastName)
+  const email = usePersonStore((state) => state.email)
+
+  const [image64Bit, setImage64Bit] = useState(usePersonStore((state) => state.userImage));
 
   const updateUserLinks = usePersonStore((state) => state.updateUserLinks)
-  // const removeUserLinks = usePersonStore((state) => state.removeUserLinks)
 
   const listOptions: Platforms[] = [
     {
       title: 'CodePen',
       name: 'codepen',
-      icon: 'github',
-      placeholder: 'https://github.com/johnappleseed/'
+      icon: '../../img/icon-codepen.svg',
+      bgColor: '#010101',
+      placeholder: 'https://codepen.com/johnappleseed/'
     },
     {
       title: 'CodeWars',
       name: 'codewars',
-      icon: 'github',
-      placeholder: 'https://github.com/johnappleseed/'
+      icon: '../../img/icon-codewars.svg',
+      bgColor: '#8A1A50',
+      placeholder: 'https://codewars.com/johnappleseed/'
     },
     {
       title: 'DevTo',
       name: 'devto',
-      icon: 'github',
-      placeholder: 'https://github.com/johnappleseed/'
+      icon: '../../img/icon-devto.svg',
+      bgColor: '#333333',
+      placeholder: 'https://devto.com/johnappleseed/'
     },
     {
       title: 'Facebook',
       name: 'facebook',
-      icon: 'facebook',
+      icon: '../../img/icon-facebook.svg',
+      bgColor: '#4267B2',
       placeholder: 'https://facebook.com/johnappleseed/'
     },
     {
       title: 'freeCodeCamp',
       name: 'freecodecamp',
-      icon: 'github',
-      placeholder: 'https://github.com/johnappleseed/'
+      icon: '../../img/icon-freecodecamp.svg',
+      bgColor: '#302267',
+      placeholder: 'https://freecodecamp.com/johnappleseed/'
     },
     {
       title: 'Frontend Mentor',
       name: 'frontendmentor',
-      icon: 'facebook',
-      placeholder: 'https://facebook.com/johnappleseed/'
+      icon: '../../img/icon-frontend-mentor.svg',
+      bgColor: '#3E54A3',
+      placeholder: 'https://frontendmentor.com/johnappleseed/'
     },
     {
       title: 'GitHub',
       name: 'github',
-      icon: 'github',
+      icon: '../../img/icon-github.svg',
+      bgColor: '#1A1A1A',
       placeholder: 'https://github.com/johnappleseed/'
     },
     {
       title: 'GitLab',
       name: 'gitlab',
-      icon: 'github',
-      placeholder: 'https://github.com/johnappleseed/'
+      icon: '../../img/icon-gitlab.svg',
+      bgColor: '#EB4925',
+      placeholder: 'https://gitlab.com/johnappleseed/'
     },
     {
       title: 'Hashnode',
       name: 'hashnode',
-      icon: 'hashnode',
+      icon: '../../img/icon-hashnode.svg',
+      bgColor: '#0330D1',
       placeholder: 'https://hashnode.com/johnappleseed/'
     },
     {
       title: 'LinkedIn',
       name: 'linkedin',
-      icon: 'github',
+      icon: '../../img/icon-linkedin.svg',
+      bgColor: '#2D68FF',
       placeholder: 'https://linkedin.com/johnappleseed/'
     },
     {
       title: 'Stack Overflow',
       name: 'stackoverflow',
-      icon: 'github',
-      placeholder: 'https://frontendmentor.com/johnappleseed/'
+      icon: '../../img/icon-stack-overflow.svg',
+      bgColor: '#EC7100',
+      placeholder: 'https://stackoverflow.com/johnappleseed/'
     },
     {
       title: 'Twitch',
       name: 'twitch',
-      icon: 'github',
-      placeholder: 'https://frontendmentor.com/johnappleseed/'
+      icon: '../../img/icon-twitch.svg',
+      bgColor: '#6441a5',
+      placeholder: 'https://twitch.com/johnappleseed/'
     },
     {
       title: 'Twitter',
       name: 'twitter',
-      icon: 'github',
-      placeholder: 'https://frontendmentor.com/johnappleseed/'
+      icon: '../../img/icon-twitter.svg',
+      bgColor: '#1DA1F2',
+      placeholder: 'https://twitter.com/johnappleseed/'
     },
     {
       title: 'Youtube',
       name: 'youtube',
-      icon: 'github',
+      icon: '../../img/icon-youtube.svg',
+      bgColor: '#EE3939',
       placeholder: 'https://youtube.com/johnappleseed/'
     },
   ]
@@ -166,31 +185,57 @@ export default function Home() {
         </div>
       </div>
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
-        <div className='col-span-5'>
-          <div className='flex justify-center bg-white p-5 py-[70px] rounded-[18px]'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="308" height="632" fill="none" viewBox="0 0 308 632">
-              <path stroke="#737373" d="M1 54.5C1 24.953 24.953 1 54.5 1h199C283.047 1 307 24.953 307 54.5v523c0 29.547-23.953 53.5-53.5 53.5h-199C24.953 631 1 607.047 1 577.5v-523Z" />
-              <path fill="#fff" stroke="#737373" d="M12 55.5C12 30.923 31.923 11 56.5 11h24C86.851 11 92 16.149 92 22.5c0 8.008 6.492 14.5 14.5 14.5h95c8.008 0 14.5-6.492 14.5-14.5 0-6.351 5.149-11.5 11.5-11.5h24c24.577 0 44.5 19.923 44.5 44.5v521c0 24.577-19.923 44.5-44.5 44.5h-195C31.923 621 12 601.077 12 576.5v-521Z" />
-              <circle cx="153.5" cy="112" r="48" fill="#EEE" /><rect width="160" height="16" x="73.5" y="185" fill="#EEE" rx="8" />
-              <rect width="72" height="8" x="117.5" y="214" fill="#EEE" rx="4" />
+        <div className='flex relative col-span-5 h-full justify-center'>
+          <div className='flex relative justify-center  bg-white h-[834px] w-full items-center rounded-[18px]'>
+            <div className='z-10 absolute flex flex-col aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
 
-              asdasd
-              <button className='rounded-lg bg-[#302267] text-white p-4 flex justify-between items-center w-[240px] my-2'>
-                <div className='flex items-center'>
-                  <Image src="../../img/icon-hashnode.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
-                  Hashnode
-                </div>
-                <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
-              </button>
-              <rect width="237" height="44" x="35" y="278" fill="#EEE" rx="8" />
-              <rect width="237" height="44" x="35" y="342" fill="#EEE" rx="8" />
-              <rect width="237" height="44" x="35" y="406" fill="#EEE" rx="8" />
-              <rect width="237" height="44" x="35" y="470" fill="#EEE" rx="8" />
-              <rect width="237" height="44" x="35" y="534" fill="#EEE" rx="8" />
-            </svg>
-            {/* <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image> */}
+              <div className='relative rounded-full z-10 w-[96px] h-[96px]  mt-2 mb-[24px] bg-[#EEEEEE]'>
+                <Image
+                  src={`${image64Bit}`}
+                  alt="Picture of the author"
+                  className='bg-cover absolute z-0 bg-center rounded-full object-cover min-h-full min-w-full'
+                  fill
+                />
+              </div>
+
+              {firstName !== '' ?
+                <div className='text-center w-[160px] h-[16px] mb-[13px]'>{firstName} {lastName}</div> :
+                <div className='bg-[#EEEEEE] rounded-full w-[160px] h-[16px] mb-[13px]'></div>
+              }
+
+              {email !== '' ?
+                <div className='text-center w-[160px] h-[16px] mb-[35px]'>{email}</div> :
+                <div className='bg-[#EEEEEE] rounded-full w-[72px] h-[8px] mb-[35px]'></div>
+              }
+
+              {(() => {
+                const arr = [];
+                for (let i = 0; i < 5; i++) {
+                  if (userLinksLocal[i]) {
+                    let currLink = listOptions.find((listOption) => { return listOption.name === userLinksLocal[i].name })
+                    arr.push(
+                      <div className={`flex justify-between items-center p-4 text-white rounded-md w-[237px] h-[44px] mt-[20px]`} style={{ 'backgroundColor': currLink!.bgColor }}>
+                        <div className='flex items-center'>
+                          <Image src={currLink!.icon} width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
+                          {currLink!.title}
+                        </div>
+                        <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
+                      </div>
+                    );
+                  } else {
+                    arr.push(
+                      <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mt-[20px]'></div>
+                    );
+                  }
+                }
+                return arr;
+              })()}
+
+            </div>
+            <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
           </div>
         </div>
+
         <div className='col-span-7 '>
           <div className='bg-white h-full rounded-[18px] flex flex-col justify-between'>
             <div>

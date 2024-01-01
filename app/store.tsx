@@ -8,23 +8,23 @@ type State = {
   userImage: string
 }
 
-interface Platforms {
-  name: string;
-  icon: string;
-  link: string;
-  placeholder: string;
-}
+// interface Platforms {
+//   name: string;
+//   icon: string;
+//   link: string;
+//   placeholder: string;
+// }
 
 type Link = {
   name: string
   url: string
 }
 
-type StateProperties = {
-  options: Platforms[];
-  selected: number;
-  link: Link[];
-}
+// type StateProperties = {
+//   options: Platforms[];
+//   selected: number;
+//   link: Link[];
+// }
 
 type Action = {
   updateFirstName: (firstName: State['firstName']) => void

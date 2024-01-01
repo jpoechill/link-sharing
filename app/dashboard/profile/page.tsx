@@ -24,6 +24,9 @@ export default function Home() {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [attemptedVerify, setAttemptedVerify] = useState(false)
 
+  const userLinks = usePersonStore((state) => state.links)
+  const [userLinksLocal, setUserLinksLocal] = useState(userLinks);
+
   const handleSubmit: React.ChangeEventHandler<HTMLInputElement> = (e: React.FormEvent<HTMLInputElement>) => {
     const preview = document.getElementById("myImage") as HTMLImageElement;
     const target = e.target as HTMLInputElement;
@@ -144,18 +147,54 @@ export default function Home() {
         </div>
       </div>
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
-        <div className='flex relative justify-center col-span-5 bg-white h-full items-center rounded-[18px]'>
-          <div className='z-10 absolute flex flex-col border aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
-            <div className='bg-[#EEEEEE] rounded-full w-[96px] h-[96px] mt-2 mb-[24px]'></div>
-            <div className='bg-[#EEEEEE] rounded-full w-[160px] h-[16px] mb-[13px]'></div>
-            <div className='bg-[#EEEEEE] rounded-lg w-[72px] h-[8px] mb-[55px]'></div>
-            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
-            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
-            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
-            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mb-[20px]'></div>
-            <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px]'></div>
+        <div className='flex relative col-span-5 h-full justify-center'>
+          <div className='flex relative justify-center  bg-white h-[834px] w-full items-center rounded-[18px]'>
+            <div className='z-10 absolute flex flex-col aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
+
+              <div className='relative rounded-full z-10 w-[96px] h-[96px]  mt-2 mb-[24px] bg-[#EEEEEE]'>
+                <Image
+                  src={`${image64Bit}`}
+                  alt="Picture of the author"
+                  className='bg-cover absolute z-0 bg-center rounded-full object-cover min-h-full min-w-full'
+                  fill
+                />
+              </div>
+
+              {firstName !== '' ?
+                <div className='text-center w-[160px] h-[16px] mb-[13px]'>{firstName} {lastName}</div> :
+                <div className='bg-[#EEEEEE] rounded-full w-[160px] h-[16px] mb-[13px]'></div>
+              }
+
+              {email !== '' ?
+                <div className='text-center w-[160px] h-[16px] mb-[35px]'>{email}</div> :
+                <div className='bg-[#EEEEEE] rounded-full w-[72px] h-[8px] mb-[35px]'></div>
+              }
+
+              {(() => {
+                const arr = [];
+                for (let i = 0; i < 5; i++) {
+                  if (userLinksLocal[i]) {
+                    arr.push(
+                      <div className='flex justify-between items-center p-4 text-white bg-[#555555] rounded-md w-[237px] h-[44px] mt-[20px]'>
+                        <div className='flex items-center'>
+                          <Image src="../../img/icon-github.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
+                          Github
+                        </div>
+                        <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
+                      </div>
+                    );
+                  } else {
+                    arr.push(
+                      <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mt-[20px]'></div>
+                    );
+                  }
+                }
+                return arr;
+              })()}
+
+            </div>
+            <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
           </div>
-          <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
         </div>
         <div className='col-span-7 relative hover-bg-[#EFEBFF]'>
           <div className='bg-white h-full rounded-[18px] flex flex-col justify-between'>
