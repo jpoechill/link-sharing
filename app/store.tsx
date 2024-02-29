@@ -41,7 +41,7 @@ const usePersonStore = create<State & Action>((set) => ({
   lastName: '',
   email: '',
   links: [],
-  userImage: '',
+  userImage: '/placeholder.svg',
   updateUserImage: (userImage) => set(() => ({ userImage: userImage })),
   updateFirstName: (firstName) => set(() => ({ firstName: firstName })),
   updateLastName: (lastName) => set(() => ({ lastName: lastName })),

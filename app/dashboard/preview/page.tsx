@@ -80,7 +80,7 @@ export default function Home() {
                 </div>
                 <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
               </button>
-              <button className='rounded-lg bg-[#EE3939] text-white p-4 flex justify-between items-center w-[240px] my-2'>
+              {/* <button className='rounded-lg bg-[#EE3939] text-white p-4 flex justify-between items-center w-[240px] my-2'>
                 <div>
                   <Image src="../../img/icon-youtube.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
                   Youtube
@@ -135,7 +135,7 @@ export default function Home() {
                   Stack Overflow
                 </div>
                 <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
-              </button>
+              </button> */}
             </div>
           </div>
           &nbsp;
