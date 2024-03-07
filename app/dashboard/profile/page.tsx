@@ -112,49 +112,49 @@ export default function Home() {
   }, [router, firstNameIsValid, lastNameIsValid, attemptedVerify]);
 
   return (
-    <main className="flex flex-col items-center sm:p-4 h-full">
-      <div className='fixed bottom-[30px] sm:bottom-[30px] z-[100] pointer-events-none'>
+    <main className="flex flex-col items-center md:p-4 h-full">
+      <div className='fixed bottom-[30px] md:bottom-[30px] z-[100] pointer-events-none'>
         <div id="successSaveBadge" className='flex bg-black text-white p-5 pointer-events-none rounded-lg opacity-0 z-0 transition duration-500 ease-in-out'>
           <Image src="../../img/icon-changes-saved.svg" width={20} height={20} className='mr-3' alt="Saved Successfully" />
           Your changes have been successfully saved!
         </div>
       </div>
-      <div className='flex justify-between sm:rounded-[18px] p-5 w-full items-center bg-white text-center'>
+      <div className='flex justify-between md:rounded-[18px] p-5 w-full items-center bg-white text-center'>
         <div>
           <Link href="/">
-            <Image src="/img/logo-devlinks-large.svg" className="hidden sm:block" alt="DevLinks logo" width={182} height={40}></Image>
-            <Image src="/img/logo-devlinks-small.svg" className="sm:hidden" alt="DevLinks logo" width={40} height={40}></Image>
+            <Image src="/img/logo-devlinks-large.svg" className="hidden md:block" alt="DevLinks logo" width={182} height={40}></Image>
+            <Image src="/img/logo-devlinks-small.svg" className="md:hidden" alt="DevLinks logo" width={40} height={40}></Image>
           </Link>
         </div>
         <div className='flex flex-row'>
           <Link href="/dashboard">
             <button className='p-2 px-5 text-[16px] group flex flex-row items-center rounded-lg mx-2 hover:hover:text-[#633CFF]'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="sm:mr-2 w-[25px] h-[25px] sm:w-[16px] sm:h-[16px]" fill="none" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" className="md:mr-2 w-[25px] h-[25px] md:w-[16px] md:h-[16px]" fill="none" viewBox="0 0 16 16">
                 <path fill="#737373" className="group-hover:fill-[#633CFF]" d="M8.523 11.72a.749.749 0 0 1 0 1.063l-.371.371A3.751 3.751 0 1 1 2.847 7.85l1.507-1.506A3.75 3.75 0 0 1 9.5 6.188a.753.753 0 0 1-1 1.125 2.25 2.25 0 0 0-3.086.091L3.908 8.91a2.25 2.25 0 0 0 3.183 3.183l.37-.371a.748.748 0 0 1 1.062 0Zm4.63-8.874a3.756 3.756 0 0 0-5.305 0l-.371.37A.751.751 0 1 0 8.539 4.28l.372-.37a2.25 2.25 0 0 1 3.182 3.182l-1.507 1.507a2.25 2.25 0 0 1-3.086.09.753.753 0 0 0-1 1.125 3.75 3.75 0 0 0 5.144-.152l1.507-1.507a3.756 3.756 0 0 0 .002-5.307v-.001Z" />
               </svg>
-              <span className='hidden sm:block'>Links</span>
+              <span className='hidden md:block'>Links</span>
             </button>
           </Link>
           <Link href="/dashboard/profile">
             <button className='p-2 px-5 text-[16px] group flex flex-row items-center text-[#633CFF] bg-[#EFEBFF] rounded-lg mx-2'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="sm:mr-2" width="21" height="20" viewBox="0 0 21 20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="md:mr-2 w-[25px] h-[25px] md:w-[16px] md:h-[16px]" viewBox="0 0 21 20">
                 <path className="fill-[#633CFF]" d="M10.5 1.563A8.437 8.437 0 1 0 18.938 10 8.447 8.447 0 0 0 10.5 1.562ZM6.716 15.357a4.688 4.688 0 0 1 7.568 0 6.54 6.54 0 0 1-7.568 0Zm1.596-5.982a2.188 2.188 0 1 1 4.376 0 2.188 2.188 0 0 1-4.376 0Zm7.344 4.683a6.523 6.523 0 0 0-2.265-1.83 4.062 4.062 0 1 0-5.782 0 6.522 6.522 0 0 0-2.265 1.83 6.562 6.562 0 1 1 10.304 0h.008Z" /></svg>
-              <span className='hidden sm:block'>Profile Data</span>
+              <span className='hidden md:block'>Profile Details</span>
             </button>
           </Link>
         </div>
         <div>
           <Link href="/dashboard/preview">
             <button className='px-4 py-2 text-[16px] mx-2 rounded border border-[#633CFF] hover:bg-[#EFEBFF] text-[#633CFF]'>
-              <Image src="/img/icon-preview-header.svg" className="sm:hidden" alt="DevLinks logo" width={25} height={25}></Image>
-              <span className='hidden sm:block'>Preview</span>
+              <Image src="/img/icon-preview-header.svg" className="md:hidden" alt="DevLinks logo" width={25} height={25}></Image>
+              <span className='hidden md:block'>Preview</span>
             </button>
           </Link>
         </div>
       </div>
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
         <div className='flex relative col-span-5 h-full justify-center'>
-          <div className='sm:flex relative justify-center hidden bg-white h-[834px] w-full items-center rounded-[18px]'>
+          <div className='md:flex relative justify-center hidden bg-white h-[834px] w-full items-center rounded-[18px]'>
             <div className='z-10 absolute flex flex-col aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
 
               <div className='relative rounded-full z-10 w-[96px] h-[96px]  mt-2 mb-[24px] bg-[#EEEEEE]'>
@@ -202,7 +202,7 @@ export default function Home() {
             <Image src="/img/illustration-phone-mockup.svg" className="w-full max-w-[307px]" alt="DevLinks logo" width={'182'} height={40}></Image>
           </div>
         </div>
-        <div className='col-span-12 sm:col-span-7 relative hover-bg-[#EFEBFF]'>
+        <div className='col-span-12 md:col-span-7 relative hover-bg-[#EFEBFF]'>
           <div className='bg-white h-full rounded-[18px] flex flex-col justify-between'>
             <div className='p-5'>
               <span className='text-[32px] font-bold'>
@@ -212,11 +212,11 @@ export default function Home() {
                 Add your details to create a personal touch to your profile.
               </div> <br />
 
-              <div className='flex lg:flex-row flex-col justify-between bg-[#FAFAFA] rounded p-5 text-[#737373]'>
-                <div className='flex items-center sm:justify-center w-full sm:w-[193px] text-[12px]'>
+              <div className='flex md:flex-row flex-col justify-between bg-[#FAFAFA] rounded p-5 text-[#737373]'>
+                <div className='flex items-center md:justify-center w-full md:w-[193px] text-[12px]'>
                   Profile Picture
                 </div>
-                <div onClick={() => openFile()} className='flex mt-5 sm:mt-0 overflow-hidden cursor-pointer relative flex-col items-center text-[#633CFF] font-bold rounded-2xl md:rounded-lg justify-center p-5 bg-[#EFEBFF] sm:w-[193px] sm:h-[193px] w-[300px] h-[300px]'>
+                <div onClick={() => openFile()} className='flex mt-5 md:mt-0 overflow-hidden cursor-pointer relative flex-col items-center text-[#633CFF] font-bold rounded-2xl md:rounded-lg justify-center p-5 bg-[#EFEBFF] md:w-[193px] md:h-[193px] w-[300px] h-[300px]'>
                   <div id="bgAvatar" className="absolute flex items-center justify-center rounded-lg w-full h-full">
                     <Image src="" id="myImage" className={`bg-cover bg-center object-cover min-h-full min-w-full ${showImageIcon === true ? "hidden" : ""}`} height={0} width={0} alt="Image preview" />
                   </div>
@@ -229,16 +229,16 @@ export default function Home() {
                     +Upload Image
                   </div>
                 </div>
-                <div className='flex items-center mt-5 sm:mt-0 sm:justify-center w-full text-left sm:text-center sm:p-3 sm:w-[193px] text-[12px]'>
+                <div className='flex items-center mt-5 md:mt-0 md:justify-center w-full text-left md:text-center md:p-3 md:w-[193px] text-[12px]'>
                   Image must be below 1024x1024px. <br />Use PNG or JPG format. <br />
                   {/* aaa{String(showImageIcon)}aaa */}
                 </div>
               </div>
 
               <div className='round bg-[#FAFAFA] p-3 mt-3 rounded-lg'>
-                <div className='flex flex-col sm:flex-row justify-between items-center my-3'>
+                <div className='flex flex-col lg:flex-row justify-between items-center my-3'>
                   <div className='text-[16px] text-[#737373] text-left w-full'>First name*</div>
-                  <div className='relative w-full sm:w-min'>
+                  <div className='relative w-full md:w-min'>
                     <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
                       <div className='text-[#FF3939] text-[12px]'>
                         <span className={firstNameIsValid === false ? '' : 'hidden'}>
@@ -247,13 +247,13 @@ export default function Home() {
                       </div>
                     </div>
                     <input type="text" placeholder="e.g. John" value={firstName} onChange={(e) => setFirstNameLocal(e.target.value)}
-                      className={`w-full md:w-[432px] p-3 rounded-lg border mt-1
+                      className={`w-full md:w-[350px] lg:w-[432px] p-3 rounded-lg border mt-1
                       ${(firstNameIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
                   </div>
                 </div>
-                <div className='flex flex-col sm:flex-row justify-between items-center mt-5 my-3'>
+                <div className='flex flex-col lg:flex-row justify-between items-center mt-5 my-3'>
                   <div className='text-[16px] text-[#737373] text-left w-full'>Last name*</div>
-                  <div className='relative w-full sm:w-min'>
+                  <div className='relative w-full md:w-min'>
                     <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
                       <div className='text-[#FF3939] text-[12px]'>
                         <span className={lastNameIsValid === false ? '' : 'hidden'}>
@@ -262,13 +262,13 @@ export default function Home() {
                       </div>
                     </div>
                     <input type="text" placeholder="e.g. Appleseed" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)}
-                      className={`w-full md:w-[432px] p-3 rounded-lg border mt-1
+                      className={`w-full md:w-[350px] lg:w-[432px] p-3 rounded-lg border mt-1
                       ${(lastNameIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
                   </div>
                 </div>
-                <div className='flex flex-col sm:flex-row justify-between items-center mt-5 my-3'>
+                <div className='flex flex-col lg:flex-row justify-between items-center mt-5 my-3'>
                   <div className='text-[16px] text-[#737373] text-left w-full'>Email</div>
-                  <div className='relative w-full sm:w-min'>
+                  <div className='relative w-full md:w-min'>
                     <div className="rounded-lg absolute pointer-events-none flex justify-end items-center w-full p-3 mt-1">
                       <div className='text-[#FF3939] text-[12px]'>
                         <span className={emailIsValid === false ? '' : 'hidden'}>
@@ -277,7 +277,7 @@ export default function Home() {
                       </div>
                     </div>
                     <input type="text" placeholder="e.g. mail@example.com" value={email} onChange={(e) => setEmailLocal(e.target.value)}
-                      className={`w-[432px] p-3 rounded-lg border mt-1
+                      className={`w-full md:w-[350px] lg:w-[432px] p-3 rounded-lg border mt-1
                       ${(emailIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
                   </div>
                 </div>
@@ -288,7 +288,7 @@ export default function Home() {
               <div>
                 <div onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email); verifyCreds(); }} className="flex justify-end w-full">
                   {/* <div className='m-5 w-full'> */}
-                  <button className="w-full border px-5 rounded-lg m-5 sm:w-min m-5  p-3 bg-[#633CFF]  text-white">
+                  <button className="w-full border px-5 rounded-lg m-5 md:w-min m-5  p-3 bg-[#633CFF]  text-white">
                     Save
                   </button>
                   {/* </div> */}

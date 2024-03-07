@@ -26,23 +26,23 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center h-full bg-white sm:bg-inherit">
+    <main className="flex flex-col items-center h-full bg-white md:bg-inherit">
       <div className='fixed bottom-[30px] z-[100]'>
         <div id="successSaveBadge" className='flex bg-black text-white p-5 rounded-lg opacity-0 transition duration-500 ease-in-out'>
           <Image src="../../img/icon-link-copied-to-clipboard.svg" width={20} height={20} className='mr-3' alt="Saved Successfully" />
           The link has been copied to your clipboard!
         </div>
       </div>
-      <div className='relative sm:bg-[#633CFF] w-full p-4 h-[357px]'>
+      <div className='relative md:bg-[#633CFF] w-full p-4 h-[300px] md:h-[357px]'>
         <div className='flex justify-between gap-5 rounded-[18px] p-4 w-full items-center bg-white text-center'>
-          <div className="w-full sm:w-fit">
+          <div className="w-full md:w-fit">
             <Link href="/dashboard">
               <button className='px-4 py-2 rounded w-full md:w-fit border border-[#633CFF] hover:bg-[#EFEBFF] font-medium text-[#633CFF]'>
                 Back to Editor
               </button>
             </Link>
           </div>
-          <div className="w-full sm:w-fit">
+          <div className="w-full md:w-fit">
             <button className='text-white px-4 py-2 w-full rounded bg-[#633CFF]' onClick={(e) => showSaveSuccess()}>
               Share Link
             </button>
@@ -50,8 +50,8 @@ export default function Home() {
         </div>
         
         <div className="mx-auto absolute h-14 inset-x-0 bottom-[150px]">
-          <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white mb-10 round sm:shadow rounded-xl w-[350px]'>
-            <div className='relative rounded-full z-10 w-[104px] h-[104px] mt-12 outline outline-8 outline-[#633CFF]'>
+          <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white mb-10 round md:shadow rounded-xl w-fit px-8 w-min-[350px]'>
+            <div className='relative rounded-full z-10 w-[190px] h-[190px] md:w-[104px] md:h-[104px] mt-12 outline outline-8 outline-[#633CFF]'>
               <Image
                 src={`${image64Bit}`}
                 alt="Picture of the author"

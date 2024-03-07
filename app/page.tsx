@@ -40,11 +40,11 @@ export default function Home({ }) {
   }, [router, emailIsValid, passwordIsValid, attemptedVerify]);
 
   return (
-    <main className="h-full flex flex-col items-center sm:pt-16 lg:pt-[80px] mt-0 lg:mt-8">
-      <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] hidden sm:block" alt="DevLinks logo" width={182} height={40}></Image>
-      <div className='flex flex-col sm:rounded-[18px] p-10 px-12 h-full justify-center sm:min-h-0 sm:mb-20 w-full sm:w-[476px] drop-shadow-2xl items-center bg-white text-center'>
+    <main className="h-full flex flex-col items-center md:pt-16 lg:pt-[80px] mt-0 lg:mt-8">
+      <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] hidden md:block" alt="DevLinks logo" width={182} height={40}></Image>
+      <div className='flex flex-col md:rounded-[18px] p-10 px-12 h-full md:justify-center md:max-h-[600px] md:min-h-0 md:mb-20 w-full md:w-[476px] drop-shadow-2xl items-center bg-white text-center'>
         <div className='w-full text-left mb-8'>
-          <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] sm:hidden" alt="DevLinks logo" width={182} height={40}></Image>
+          <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] md:hidden" alt="DevLinks logo" width={182} height={40}></Image>
           <h1 className='text-[32px] font-bold mb-2'>Login</h1>
           <span className='text-[16px] text-[#737373]'>Add your details below to get back into app </span>
         </div>
@@ -90,7 +90,7 @@ export default function Home({ }) {
           {/* </Link> */}
           <div className='w-full text-center mt-4'>
             <span className='text-[#737373]'>
-              Don&apos;t have an account? <br className='block sm:hidden' />
+              Don&apos;t have an account? <br className='block md:hidden' />
             </span> <Link href="/createaccount">Create Account</Link>
           </div>
         </div>
