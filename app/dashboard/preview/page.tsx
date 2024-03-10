@@ -155,7 +155,7 @@ export default function Home() {
         </div>
         
         <div className="mx-auto absolute h-14 inset-x-0 bottom-[150px]">
-          <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white mb-10 round md:shadow rounded-xl w-fit px-8 w-min-[350px]'>
+          <div className='flex mx-auto flex-col m-4 items-center justify-center bg-white mb-10 round md:shadow rounded-xl w-fit px-8 h-fit pb-10 w-min-[350px]'>
             <div className='relative rounded-full z-10 w-[190px] h-[190px] md:w-[104px] md:h-[104px] mt-12 outline outline-8 outline-[#633CFF]'>
               <Image
                 src={`${image64Bit}`}
@@ -192,16 +192,6 @@ export default function Home() {
                 }
                 return arr;
               })()}
-
-            {/* <div className="flex flex-col mb-5">
-              <button className='rounded-lg bg-black text-white p-4 flex justify-between items-center w-[240px] my-2'>
-                <div className='flex items-center'>
-                  <Image src="../../img/icon-github.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
-                  Github
-                </div>
-                <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
-              </button>
-            </div> */}
           </div>
           &nbsp;
         </div>
