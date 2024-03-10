@@ -13,6 +13,9 @@ export default function Home() {
 
   const [image64Bit, setImage64Bit] = useState(usePersonStore((state) => state.userImage));
 
+  const userLinks = usePersonStore((state) => state.links)
+  const [userLinksLocal, setUserLinksLocal] = useState(userLinks);
+
   const showSaveSuccess = () => {
     const popUp = document.getElementById("successSaveBadge") as HTMLElement;
 
@@ -24,6 +27,108 @@ export default function Home() {
       popUp.classList.add('opacity-0')
     }, 2000)
   }
+
+
+  const listOptions: Platforms[] = [
+    {
+      title: 'CodePen',
+      name: 'codepen',
+      icon: '../../img/icon-codepen.svg',
+      bgColor: '#010101',
+      placeholder: 'https://codepen.com/johnappleseed/'
+    },
+    {
+      title: 'CodeWars',
+      name: 'codewars',
+      icon: '../../img/icon-codewars.svg',
+      bgColor: '#8A1A50',
+      placeholder: 'https://codewars.com/johnappleseed/'
+    },
+    {
+      title: 'DevTo',
+      name: 'devto',
+      icon: '../../img/icon-devto.svg',
+      bgColor: '#333333',
+      placeholder: 'https://devto.com/johnappleseed/'
+    },
+    {
+      title: 'Facebook',
+      name: 'facebook',
+      icon: '../../img/icon-facebook.svg',
+      bgColor: '#4267B2',
+      placeholder: 'https://facebook.com/johnappleseed/'
+    },
+    {
+      title: 'freeCodeCamp',
+      name: 'freecodecamp',
+      icon: '../../img/icon-freecodecamp.svg',
+      bgColor: '#302267',
+      placeholder: 'https://freecodecamp.com/johnappleseed/'
+    },
+    {
+      title: 'Frontend Mentor',
+      name: 'frontendmentor',
+      icon: '../../img/icon-frontend-mentor.svg',
+      bgColor: '#3E54A3',
+      placeholder: 'https://frontendmentor.com/johnappleseed/'
+    },
+    {
+      title: 'GitHub',
+      name: 'github',
+      icon: '../../img/icon-github.svg',
+      bgColor: '#1A1A1A',
+      placeholder: 'https://github.com/johnappleseed/'
+    },
+    {
+      title: 'GitLab',
+      name: 'gitlab',
+      icon: '../../img/icon-gitlab.svg',
+      bgColor: '#EB4925',
+      placeholder: 'https://gitlab.com/johnappleseed/'
+    },
+    {
+      title: 'Hashnode',
+      name: 'hashnode',
+      icon: '../../img/icon-hashnode.svg',
+      bgColor: '#0330D1',
+      placeholder: 'https://hashnode.com/johnappleseed/'
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      icon: '../../img/icon-linkedin.svg',
+      bgColor: '#2D68FF',
+      placeholder: 'https://linkedin.com/johnappleseed/'
+    },
+    {
+      title: 'Stack Overflow',
+      name: 'stackoverflow',
+      icon: '../../img/icon-stack-overflow.svg',
+      bgColor: '#EC7100',
+      placeholder: 'https://stackoverflow.com/johnappleseed/'
+    },
+    {
+      title: 'Twitch',
+      name: 'twitch',
+      icon: '../../img/icon-twitch.svg',
+      bgColor: '#6441a5',
+      placeholder: 'https://twitch.com/johnappleseed/'
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      icon: '../../img/icon-twitter.svg',
+      bgColor: '#1DA1F2',
+      placeholder: 'https://twitter.com/johnappleseed/'
+    },
+    {
+      title: 'Youtube',
+      name: 'youtube',
+      icon: '../../img/icon-youtube.svg',
+      bgColor: '#EE3939',
+      placeholder: 'https://youtube.com/johnappleseed/'
+    },
+  ]
 
   return (
     <main className="flex flex-col items-center h-full bg-white md:bg-inherit">
@@ -62,9 +167,33 @@ export default function Home() {
             </div>
             <span className='text-[32px] font-bold mt-6'>{firstName} {lastName}</span>
             <div className='mt-3 mb-10 text-[#737373]'>
-              {email || 'ben@example.com'}
+              {email || 'mail@example.com'}
             </div>
-            <div className="flex flex-col mb-5">
+
+            {(() => {
+                const arr = [];
+                for (let i = 0; i < 5; i++) {
+                  if (userLinksLocal[i]) {
+                    let currLink = listOptions.find((listOption) => { return listOption.name === userLinksLocal[i].name })
+                    arr.push(
+                      <div className={`flex justify-between items-center p-4 text-white rounded-md w-[237px] h-[44px] mt-[20px]`} style={{ 'backgroundColor': currLink!.bgColor }}>
+                        <div className='flex items-center'>
+                          <Image src={currLink!.icon} width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
+                          {currLink!.title}
+                        </div>
+                        <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
+                      </div>
+                    );
+                  } else {
+                    arr.push(
+                      <div className='bg-[#EEEEEE] rounded-md w-[237px] h-[44px] mt-[20px]'></div>
+                    );
+                  }
+                }
+                return arr;
+              })()}
+
+            {/* <div className="flex flex-col mb-5">
               <button className='rounded-lg bg-black text-white p-4 flex justify-between items-center w-[240px] my-2'>
                 <div className='flex items-center'>
                   <Image src="../../img/icon-github.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
@@ -72,7 +201,7 @@ export default function Home() {
                 </div>
                 <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
               </button>
-            </div>
+            </div> */}
           </div>
           &nbsp;
         </div>

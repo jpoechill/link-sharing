@@ -3,6 +3,8 @@ import { create } from 'zustand'
 type State = {
   firstName: string
   lastName: string
+  // tempFirstName: string
+  // tempLastName: string
   email: string
   links: Link[]
   userImage: string
@@ -39,6 +41,8 @@ type Action = {
 const usePersonStore = create<State & Action>((set) => ({
   firstName: '',
   lastName: '',
+  // tempFirstName: 'cat',
+  // tempLastName: 'hat',
   email: '',
   links: [],
   userImage: '/placeholder.svg',

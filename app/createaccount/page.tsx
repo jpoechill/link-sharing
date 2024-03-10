@@ -78,7 +78,7 @@ export default function Home() {
             </div>
             <input type="text" onChange={(e) => setEmail(e.target.value)} className={`
             border w-full p-3 pl-10 rounded-lg mt-1 focus:shadow-[0_0_32px_0_rgba(90,60,255,.3)] 
-            ${(emailIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} placeholder='e.g. alex@gmail.com' />
+            ${(emailIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} placeholder='e.g. example@mail.com' />
           </div>
           <div className='mb-5'>
             <span className='text-xs'>Create Password</span> <br />

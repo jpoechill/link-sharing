@@ -9,6 +9,11 @@ import { useRouter } from 'next/navigation'
 export default function Home() {
   const router = useRouter();
   const updateFirstName = usePersonStore((state) => state.updateFirstName)
+
+  const savedFirstName = usePersonStore((state) => state.firstName)
+  const savedLastName = usePersonStore((state) => state.lastName)
+  const savedEmail = usePersonStore((state) => state.email)
+
   const [firstName, setFirstNameLocal] = useState(usePersonStore((state) => state.firstName));
   const updateLastName = usePersonStore((state) => state.updateLastName)
   const [lastName, setLastNameLocal] = useState(usePersonStore((state) => state.lastName));
@@ -56,15 +61,116 @@ export default function Home() {
     }
   };
 
-
   const openFile = () => {
     const preview = document.getElementById("file") as HTMLFormElement;
     preview.click();
   }
 
+
+  const listOptions: Platforms[] = [
+    {
+      title: 'CodePen',
+      name: 'codepen',
+      icon: '../../img/icon-codepen.svg',
+      bgColor: '#010101',
+      placeholder: 'https://codepen.com/johnappleseed/'
+    },
+    {
+      title: 'CodeWars',
+      name: 'codewars',
+      icon: '../../img/icon-codewars.svg',
+      bgColor: '#8A1A50',
+      placeholder: 'https://codewars.com/johnappleseed/'
+    },
+    {
+      title: 'DevTo',
+      name: 'devto',
+      icon: '../../img/icon-devto.svg',
+      bgColor: '#333333',
+      placeholder: 'https://devto.com/johnappleseed/'
+    },
+    {
+      title: 'Facebook',
+      name: 'facebook',
+      icon: '../../img/icon-facebook.svg',
+      bgColor: '#4267B2',
+      placeholder: 'https://facebook.com/johnappleseed/'
+    },
+    {
+      title: 'freeCodeCamp',
+      name: 'freecodecamp',
+      icon: '../../img/icon-freecodecamp.svg',
+      bgColor: '#302267',
+      placeholder: 'https://freecodecamp.com/johnappleseed/'
+    },
+    {
+      title: 'Frontend Mentor',
+      name: 'frontendmentor',
+      icon: '../../img/icon-frontend-mentor.svg',
+      bgColor: '#3E54A3',
+      placeholder: 'https://frontendmentor.com/johnappleseed/'
+    },
+    {
+      title: 'GitHub',
+      name: 'github',
+      icon: '../../img/icon-github.svg',
+      bgColor: '#1A1A1A',
+      placeholder: 'https://github.com/johnappleseed/'
+    },
+    {
+      title: 'GitLab',
+      name: 'gitlab',
+      icon: '../../img/icon-gitlab.svg',
+      bgColor: '#EB4925',
+      placeholder: 'https://gitlab.com/johnappleseed/'
+    },
+    {
+      title: 'Hashnode',
+      name: 'hashnode',
+      icon: '../../img/icon-hashnode.svg',
+      bgColor: '#0330D1',
+      placeholder: 'https://hashnode.com/johnappleseed/'
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      icon: '../../img/icon-linkedin.svg',
+      bgColor: '#2D68FF',
+      placeholder: 'https://linkedin.com/johnappleseed/'
+    },
+    {
+      title: 'Stack Overflow',
+      name: 'stackoverflow',
+      icon: '../../img/icon-stack-overflow.svg',
+      bgColor: '#EC7100',
+      placeholder: 'https://stackoverflow.com/johnappleseed/'
+    },
+    {
+      title: 'Twitch',
+      name: 'twitch',
+      icon: '../../img/icon-twitch.svg',
+      bgColor: '#6441a5',
+      placeholder: 'https://twitch.com/johnappleseed/'
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      icon: '../../img/icon-twitter.svg',
+      bgColor: '#1DA1F2',
+      placeholder: 'https://twitter.com/johnappleseed/'
+    },
+    {
+      title: 'Youtube',
+      name: 'youtube',
+      icon: '../../img/icon-youtube.svg',
+      bgColor: '#EE3939',
+      placeholder: 'https://youtube.com/johnappleseed/'
+    },
+  ]
+
+
   const showSaveSuccess = () => {
     const popUp = document.getElementById("successSaveBadge") as HTMLElement;
-
 
     popUp.style.zIndex = "1";
     popUp.classList.remove("opacity-0");
@@ -155,7 +261,7 @@ export default function Home() {
       <div className='grid grid-cols-12 mt-5 h-full w-full gap-5'>
         <div className='flex relative col-span-5 h-full justify-center'>
           <div className='md:flex relative justify-center hidden bg-white h-[834px] w-full items-center rounded-[18px]'>
-            <div className='z-10 absolute flex flex-col aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
+            <div className='z-10 absolute flex flex-col whitespace-nowrap aspect-video justify-center items-center max-h-[632px] w-full h-full max-w-[308px]'>
 
               <div className='relative rounded-full z-10 w-[96px] h-[96px]  mt-2 mb-[24px] bg-[#EEEEEE]'>
                 <Image
@@ -166,13 +272,13 @@ export default function Home() {
                 />
               </div>
 
-              {firstName !== '' ?
-                <div className='text-center w-[160px] h-[16px] mb-[13px]'>{firstName} {lastName}</div> :
+              {savedFirstName !== '' ?
+                <div className='text-center mx-auto text-[18px] font-bold w-[160px] h-[16px] mb-[13px]'>{savedFirstName} {savedLastName}</div> :
                 <div className='bg-[#EEEEEE] rounded-full w-[160px] h-[16px] mb-[13px]'></div>
               }
 
-              {email !== '' ?
-                <div className='text-center w-[160px] h-[16px] mb-[35px]'>{email}</div> :
+              {savedEmail !== '' ?
+                <div className='text-center w-[160px] h-[16px] mb-[35px]'>{savedEmail}</div> :
                 <div className='bg-[#EEEEEE] rounded-full w-[72px] h-[8px] mb-[35px]'></div>
               }
 
@@ -180,11 +286,12 @@ export default function Home() {
                 const arr = [];
                 for (let i = 0; i < 5; i++) {
                   if (userLinksLocal[i]) {
+                    let currLink = listOptions.find((listOption) => { return listOption.name === userLinksLocal[i].name })
                     arr.push(
-                      <div className='flex justify-between items-center p-4 text-white bg-[#555555] rounded-md w-[237px] h-[44px] mt-[20px]'>
+                      <div className={`flex justify-between items-center p-4 text-white rounded-md w-[237px] h-[44px] mt-[20px]`} style={{ 'backgroundColor': currLink!.bgColor }}>
                         <div className='flex items-center'>
-                          <Image src="../../img/icon-github.svg" width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
-                          Github
+                          <Image src={currLink!.icon} width={15} height={15} className="inline mr-2 fill-white" alt="Github Icon"></Image>
+                          {currLink!.title}
                         </div>
                         <Image src="../../img/icon-arrow-right.svg" width={16} height={16} alt="Github Icon"></Image>
                       </div>
@@ -226,12 +333,11 @@ export default function Home() {
                   </form>
                   <div className={`flex flex-col items-center justify-center mb-3 ${showImageIcon === true ? " " : " hidden"}`}>
                     <Image src="/img/icon-upload-image.svg" className={`my-3`} width={32} height={32} alt="Upload Image"></Image>
-                    +Upload Image
+                    + Upload Image
                   </div>
                 </div>
                 <div className='flex items-center mt-5 md:mt-0 md:justify-center w-full text-left md:text-center md:p-3 md:w-[193px] text-[12px]'>
                   Image must be below 1024x1024px. <br />Use PNG or JPG format. <br />
-                  {/* aaa{String(showImageIcon)}aaa */}
                 </div>
               </div>
 
@@ -261,7 +367,7 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                    <input type="text" placeholder="e.g. Appleseed" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)}
+                    <input type="text" placeholder="e.g. Doe" value={lastName} onChange={(e) => setLastNameLocal(e.target.value)}
                       className={`w-full md:w-[350px] lg:w-[432px] p-3 rounded-lg border mt-1
                       ${(lastNameIsValid === true ? '' : 'border-[#FF3939] text-[#FF3939] focus:border-[#FF3939] focus:ring-[#FF3939]')} `} />
                   </div>
@@ -288,7 +394,7 @@ export default function Home() {
               <div>
                 <div onClick={(e) => { updateFirstName(firstName); updateLastName(lastName); updateEmail(email); verifyCreds(); }} className="flex justify-end w-full">
                   {/* <div className='m-5 w-full'> */}
-                  <button className="w-full border px-5 rounded-lg m-5 md:w-min m-5  p-3 bg-[#633CFF]  text-white">
+                  <button className="w-full border px-5 rounded-lg md:w-min m-5  p-3 bg-[#633CFF]  text-white">
                     Save
                   </button>
                   {/* </div> */}
