@@ -42,7 +42,7 @@ export default function Home({ }) {
   return (
     <main className="h-full flex flex-col items-center md:pt-16 lg:pt-[80px] mt-0 lg:mt-8">
       <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] hidden md:block" alt="DevLinks logo" width={182} height={40}></Image>
-      <div className='flex flex-col md:rounded-[18px] p-10 px-12 h-full md:justify-center md:max-h-[600px] md:min-h-0 md:mb-20 w-full md:w-[476px] drop-shadow-2xl items-center bg-white text-center'>
+      <div className='flex flex-col md:rounded-[18px] p-10 px-12 min-h-full h-full md:justify-center md:max-h-[600px] md:min-h-[500px] md:mb-20 w-full md:w-[476px] drop-shadow-2xl items-center bg-white text-center'>
         <div className='w-full text-left mb-8'>
           <Image src="/img/logo-devlinks-large.svg" className="mb-[55px] md:hidden" alt="DevLinks logo" width={182} height={40}></Image>
           <h1 className='text-[32px] font-bold mb-2'>Login</h1>
