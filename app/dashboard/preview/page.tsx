@@ -27,7 +27,14 @@ export default function Home() {
       popUp.classList.add('opacity-0')
     }, 2000)
   }
-
+  
+  interface Platforms {
+    title: string;
+    name: string;
+    icon: string;
+    bgColor?: string;
+    placeholder: string;
+  }
 
   const listOptions: Platforms[] = [
     {
